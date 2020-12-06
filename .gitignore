@@ -1,4 +1,7 @@
 .DS_Store
+.env
+.env.development
+.env.production
 
 application/cache/*
 !application/cache/index.html
