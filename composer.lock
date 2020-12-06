@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d013948c997b4d824caec1c7ef99ab0",
+    "content-hash": "5e228a6a90cbe1ec3449dd614b603cd4",
     "packages": [
         {
             "name": "kenjis/codeigniter-ss-twig",
@@ -1713,7 +1713,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.3.7"
+        "php": ">=5.6"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
