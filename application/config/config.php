@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = getenv('CI_BASEURL');
+$config['base_url'] = env('CI_BASEURL', 'localhost:8000');
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ $config['base_url'] = getenv('CI_BASEURL');
 | variable so that it is blank.
 |
 */
-$config['index_page'] = getenv('CI_INDEX_PAGE');
+$config['index_page'] = env('CI_INDEX_PAGE', 'index.php');
 
 /*
 |--------------------------------------------------------------------------
@@ -324,7 +324,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = getenv('CI_ENCRYPTION_KEY');
+$config['encryption_key'] = env('CI_ENCRYPTION_KEY', '');
 
 /*
 |--------------------------------------------------------------------------

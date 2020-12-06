@@ -74,13 +74,13 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	   => getenv('DB_DSN'),
-	'hostname' => getenv('DB_HOSTNAME'),
-	'username' => getenv('DB_USERNAME'),
-	'password' => getenv('DB_PASSWORD'),
-	'database' => getenv('DB_DATABASE'),
-	'dbdriver' => getenv('DB_DRIVER'),
-	'dbprefix' => getenv('DB_PREFIX'),
+	'dsn'	   => env('DB_DSN', ''),
+	'hostname' => env('DB_HOSTNAME', 'localhost'),
+	'username' => env('DB_USERNAME', 'root'),
+	'password' => env('DB_PASSWORD', ''),
+	'database' => env('DB_DATABASE', 'nightlight'),
+	'dbdriver' => env('DB_DRIVER', 'mysqli'),
+	'dbprefix' => env('DB_PREFIX', ''),
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
