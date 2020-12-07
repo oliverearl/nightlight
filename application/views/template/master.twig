@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html lang="{{ lang ?? 'en' }}">
+<head>
+	{% include 'template/meta.partial.twig' %}
+	{% block customcss %}{% endblock %}
+	<title>{% block title %}{% endblock %} - Aberystwyth Nightline</title>
+</head>
+<body>
+{% block navigation %}{% endblock %}
+{% block facebooksdk %}{% endblock %}
+<div class="container">
+	{% block component %}
+	{% endblock %}
+	{% include 'template/scripts.partial.twig' %}
+</div>
+</body>
+</html>

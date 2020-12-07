@@ -1,0 +1,17 @@
+{% extends 'template/master.twig' %}
+{% block customcss %}
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/theme.min.css">
+	<link rel="stylesheet" href="css/website.css">
+{% endblock %}
+
+{% block navigation %}
+	{% include 'template/website/alerts.partial.twig' %}
+	{% include 'template/website/navigation.partial.twig' %}
+{% endblock %}
+
+{% block component %}
+	{% block content %}
+	{% endblock %}
+	{% include 'template/website/footer.partial.twig' %}
+{% endblock %}
