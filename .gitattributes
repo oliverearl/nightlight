@@ -1,2 +1,3 @@
 system/* linguist-vendored
+application/third_party/* linguist-vendored
 public/css/theme.css linguist-vendored
