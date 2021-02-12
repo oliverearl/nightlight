@@ -22,74 +22,74 @@ if( ! isset( $on_hold_message ) )
 {
 ?>
 
-	<p>Open up your javascript console to see what is happening when you try to login</p>
+    <p>Open up your javascript console to see what is happening when you try to login</p>
 
-	<?php
+    <?php
 
-	echo form_open( 'examples/ajax_attempt_login', ['class' => 'std-form'] );
+    echo form_open( 'examples/ajax_attempt_login', ['class' => 'std-form'] );
 
-	?>
+    ?>
 
-		<div>
+        <div>
 
-			<label for="login_string" class="form_label">Username or Email</label>
-			<input type="text" name="login_string" id="login_string" class="form_input" autocomplete="off" maxlength="255" />
+            <label for="login_string" class="form_label">Username or Email</label>
+            <input type="text" name="login_string" id="login_string" class="form_input" autocomplete="off" maxlength="255" />
 
-			<br />
+            <br />
 
-			<label for="login_pass" class="form_label">Password</label>
-			<input type="password" name="login_pass" id="login_pass" class="form_input password" <?php 
-				if( config_item('max_chars_for_password') > 0 )
-					echo 'maxlength="' . config_item('max_chars_for_password') . '"'; 
-			?> autocomplete="off" readonly="readonly" onfocus="this.removeAttribute('readonly');" />
+            <label for="login_pass" class="form_label">Password</label>
+            <input type="password" name="login_pass" id="login_pass" class="form_input password" <?php
+                if( config_item('max_chars_for_password') > 0 )
+                    echo 'maxlength="' . config_item('max_chars_for_password') . '"';
+            ?> autocomplete="off" readonly="readonly" onfocus="this.removeAttribute('readonly');" />
 
 
-			<?php
-				if( config_item('allow_remember_me') )
-				{
-			?>
+            <?php
+                if( config_item('allow_remember_me') )
+                {
+            ?>
 
-				<br />
+                <br />
 
-				<label for="remember_me" class="form_label">Remember Me</label>
-				<input type="checkbox" id="remember_me" name="remember_me" value="yes" />
+                <label for="remember_me" class="form_label">Remember Me</label>
+                <input type="checkbox" id="remember_me" name="remember_me" value="yes" />
 
-			<?php
-				}
-			?>
+            <?php
+                }
+            ?>
 
-			<input type="hidden" id="max_allowed_attempts" value="<?php echo config_item('max_allowed_attempts'); ?>" />
-			<input type="hidden" id="mins_on_hold" value="<?php echo ( config_item('seconds_on_hold') / 60 ); ?>" />
-			<input type="submit" name="submit" value="Login" id="submit_button"  />
+            <input type="hidden" id="max_allowed_attempts" value="<?php echo config_item('max_allowed_attempts'); ?>" />
+            <input type="hidden" id="mins_on_hold" value="<?php echo ( config_item('seconds_on_hold') / 60 ); ?>" />
+            <input type="submit" name="submit" value="Login" id="submit_button"  />
 
-		</div>
-	</form>
+        </div>
+    </form>
 
 <?php
 }
 
 // EXCESSIVE LOGIN ATTEMPTS ERROR MESSAGE
 $error_display = ! isset( $on_hold_message )
-	? 'display:none;'
-	: '';
+    ? 'display:none;'
+    : '';
 
 echo '
-	<div id="on-hold-message" style="border:1px solid red;' . $error_display . '">
-		<p>
-			Excessive Login Attempts
-		</p>
-		<p>
-			You have exceeded the maximum number of failed login<br />
-			attempts that this website will allow.
-		<p>
-		<p>
-			Your access to login and account recovery has been blocked for ' . ( (int) config_item('seconds_on_hold') / 60 ) . ' minutes.
-		</p>
-		<p>
-			Please use the <a href="/examples/recover">Account Recovery</a> after ' . ( (int) config_item('seconds_on_hold') / 60 ) . ' minutes has passed,<br />
-			or contact us if you require assistance gaining access to your account.
-		</p>
-	</div>
+    <div id="on-hold-message" style="border:1px solid red;' . $error_display . '">
+        <p>
+            Excessive Login Attempts
+        </p>
+        <p>
+            You have exceeded the maximum number of failed login<br />
+            attempts that this website will allow.
+        <p>
+        <p>
+            Your access to login and account recovery has been blocked for ' . ( (int) config_item('seconds_on_hold') / 60 ) . ' minutes.
+        </p>
+        <p>
+            Please use the <a href="/examples/recover">Account Recovery</a> after ' . ( (int) config_item('seconds_on_hold') / 60 ) . ' minutes has passed,<br />
+            or contact us if you require assistance gaining access to your account.
+        </p>
+    </div>
 ';
 
 /* End of file login_form.php */

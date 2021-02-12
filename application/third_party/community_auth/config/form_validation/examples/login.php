@@ -21,15 +21,15 @@ $CI->load->model('examples/validation_callables');
 
 // Login ---------------------------
 $config['login_rules'] = [
-	[
-		'field' => 'login_string',
-		'label' => 'USERNAME OR EMAIL ADDRESS',
-		'rules' => 'trim|required|max_length[255]' /* Replace max_length w/ valid_email is site not using usernames */
-	],
-	[
-		'field' => 'login_pass',
-		'label' => 'PASSWORD',
-		'rules' => [
+    [
+        'field' => 'login_string',
+        'label' => 'USERNAME OR EMAIL ADDRESS',
+        'rules' => 'trim|required|max_length[255]' /* Replace max_length w/ valid_email is site not using usernames */
+    ],
+    [
+        'field' => 'login_pass',
+        'label' => 'PASSWORD',
+        'rules' => [
             'trim',
             'required',
             [ 
@@ -37,7 +37,7 @@ $config['login_rules'] = [
                 [ $CI->validation_callables, '_check_password_strength' ] 
             ]
         ]
-	]
+    ]
 ];
 
 /* End of file login.php */

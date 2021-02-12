@@ -15,22 +15,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 function auth_sess_check(){
 
-	$CI =& get_instance();
+    $CI =& get_instance();
 
-	// Ensure authentication is loaded
-	if( $CI->load->is_loaded('authentication') )
-	{
-		// Check if no call to auth verification or requirement methods
-		if( $CI->authentication->post_system_sess_check )
-		{
-			// Check if the session was regenerated
-			if( ! is_null( $CI->session->regenerated_session_id ) )
-			{
-				// Verify login, which will update the session ID in user record
-				$CI->authentication->check_login( 1 );
-			}
-		}
-	}
+    // Ensure authentication is loaded
+    if( $CI->load->is_loaded('authentication') )
+    {
+        // Check if no call to auth verification or requirement methods
+        if( $CI->authentication->post_system_sess_check )
+        {
+            // Check if the session was regenerated
+            if( ! is_null( $CI->session->regenerated_session_id ) )
+            {
+                // Verify login, which will update the session ID in user record
+                $CI->authentication->check_login( 1 );
+            }
+        }
+    }
 
 }
 
