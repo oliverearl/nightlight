@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
@@ -71,26 +71,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | the query builder class.
 */
 $active_group = 'default';
-$query_builder = TRUE;
+$query_builder = true;
 
-$db['default'] = array(
-    'dsn'       => env('DB_DSN', ''),
+$db['default'] = [
+    'dsn' => env('DB_DSN', ''),
     'hostname' => env('DB_HOSTNAME', 'localhost'),
     'username' => env('DB_USERNAME', 'root'),
     'password' => env('DB_PASSWORD', ''),
     'database' => env('DB_DATABASE', 'nightlight'),
     'dbdriver' => env('DB_DRIVER', 'mysqli'),
     'dbprefix' => env('DB_PREFIX', ''),
-    'pconnect' => FALSE,
+    'pconnect' => false,
     'db_debug' => (ENVIRONMENT !== 'production'),
-    'cache_on' => FALSE,
+    'cache_on' => false,
     'cachedir' => '',
     'char_set' => 'utf8',
     'dbcollat' => 'utf8_general_ci',
     'swap_pre' => '',
-    'encrypt' => FALSE,
-    'compress' => FALSE,
-    'stricton' => FALSE,
-    'failover' => array(),
-    'save_queries' => TRUE
-);
+    'encrypt' => false,
+    'compress' => false,
+    'stricton' => false,
+    'failover' => [],
+    'save_queries' => true,
+];

@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -12,14 +12,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$hook['pre_system'] = array(
+$hook['pre_system'] = [
     'function' => 'auth_constants',
     'filename' => 'auth_constants.php',
-    'filepath' => 'third_party/community_auth/hooks'
-);
+    'filepath' => 'third_party/community_auth/hooks',
+];
 
-$hook['post_system'] = array(
+$hook['post_system'] = [
     'function' => 'auth_sess_check',
     'filename' => 'auth_sess_check.php',
-    'filepath' => 'third_party/community_auth/hooks'
-);
+    'filepath' => 'third_party/community_auth/hooks',
+];
