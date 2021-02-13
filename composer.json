@@ -19,6 +19,22 @@
     },
     "require-dev": {
         "mikey179/vfsstream": "1.1.*",
-        "phpunit/phpunit": "4.* || 5.*"
+        "phpunit/phpunit": "4.* || 5.*",
+        "kenjis/ci-phpunit-test": "^0.18.0",
+        "friendsofphp/php-cs-fixer": "^2.18"
+    },
+    "scripts": {
+        "test": [
+            "cd ./application/tests && ../../vendor/bin/phpunit"
+        ],
+        "testdox": [
+            "cd ./application/tests && ../../vendor/bin/phpunit --testdox"
+        ],
+        "lint": [
+            "./vendor/bin/php-cs-fixer fix --config=.php_cs -v"
+        ],
+        "ci-lint": [
+            "./vendor/bin/php-cs-fixer fix --config=.php_cs -v --dry-run --stop-on-violation --using-cache=no"
+        ]
     }
 }
