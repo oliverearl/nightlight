@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
 | -----------------------------------------------------------------
-|				MIN CHARS FOR PASSWORD						
+|                MIN CHARS FOR PASSWORD
 | -----------------------------------------------------------------
 | The least amount of characters for a valid password
 */
@@ -24,7 +24,7 @@ $config['min_chars_for_password'] = 8;
 
 /*
 | -----------------------------------------------------------------
-|				MAX CHARS FOR PASSWORD						
+|                MAX CHARS FOR PASSWORD
 | -----------------------------------------------------------------
 | The maximum amount of characters for a valid password.
 | Set to 0 for unlimited length.
@@ -39,7 +39,7 @@ $config['max_chars_for_password'] = 0;
 
 /*
 | -----------------------------------------------------------------
-|				DIGIT(S) REQUIRED FOR PASSWORD						
+|                DIGIT(S) REQUIRED FOR PASSWORD
 | -----------------------------------------------------------------
 | The minimum amount of numeric characters for a valid password.
 | Set to 0 to require none.
@@ -49,7 +49,7 @@ $config['min_digits_for_password'] = 1;
 
 /*
 | -----------------------------------------------------------------
-|			LOWERCASE LETTER(S) REQUIRED FOR PASSWORD						
+|            LOWERCASE LETTER(S) REQUIRED FOR PASSWORD
 | -----------------------------------------------------------------
 | The minimum amount of lowercase alpha characters for a valid password.
 | Set to 0 to require none.
@@ -59,7 +59,7 @@ $config['min_lowercase_chars_for_password'] = 1;
 
 /*
 | -----------------------------------------------------------------
-|			UPPERCASE LETTER(S) REQUIRED FOR PASSWORD						
+|            UPPERCASE LETTER(S) REQUIRED FOR PASSWORD
 | -----------------------------------------------------------------
 | The minimum amount of uppercase alpha characters for a valid password.
 | Set to 0 to require none.
@@ -69,7 +69,7 @@ $config['min_uppercase_chars_for_password'] = 1;
 
 /*
 | -----------------------------------------------------------------
-|			NON-ALPHANUMERIC CHAR(S) REQUIRED FOR PASSWORD						
+|            NON-ALPHANUMERIC CHAR(S) REQUIRED FOR PASSWORD
 | -----------------------------------------------------------------
 | The minimum amount of non-alphanumeric characters for a valid password.
 | Set to 0 to require none.

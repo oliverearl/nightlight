@@ -24,7 +24,7 @@ function auth_constants(){
 | 
 */
 
-	define('USE_SSL', 0);
+    define('USE_SSL', 0);
 
 /*
 | -----------------------------------------------------------------
@@ -37,7 +37,7 @@ function auth_constants(){
 | 
 */
 
-	define('LOGIN_PAGE', 'login');
+    define('LOGIN_PAGE', 'login');
 
 /*
 | -----------------------------------------------------------------
@@ -49,7 +49,7 @@ function auth_constants(){
 | 
 */
 
-	define('AUTH_REDIRECT_PARAM', 'redirect');
+    define('AUTH_REDIRECT_PARAM', 'redirect');
 
 /*
 | -----------------------------------------------------------------
@@ -61,7 +61,7 @@ function auth_constants(){
 | 
 */
 
-	define('AUTH_LOGOUT_PARAM', 'logout');
+    define('AUTH_LOGOUT_PARAM', 'logout');
 
 }
 

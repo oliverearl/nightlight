@@ -65,9 +65,9 @@ die('This file is used for development purposes only.');
  */
 class CI_Controller
 {
-	public function __construct()
-	{
-	}
+    public function __construct()
+    {
+    }
 }
 
 class CI_Model extends CI_Controller
