@@ -7,6 +7,8 @@
 application/cache/*
 !application/cache/index.html
 
+.php_cs.cache
+
 application/logs/*
 !application/logs/index.html
 
