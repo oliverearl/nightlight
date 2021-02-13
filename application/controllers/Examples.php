@@ -12,7 +12,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @license     BSD - http://www.opensource.org/licenses/BSD-3-Clause
  * @link        http://community-auth.com
  */
-
 class Examples extends MY_Controller
 {
     public function __construct()
@@ -38,13 +37,12 @@ class Examples extends MY_Controller
      */
     public function index()
     {
-        if( $this->require_role('admin') )
-        {
-            echo $this->load->view('examples/page_header', '', TRUE);
+        if ($this->require_role('admin')) {
+            echo $this->load->view('examples/page_header', '', true);
 
             echo '<p>You are logged in!</p>';
 
-            echo $this->load->view('examples/page_footer', '', TRUE);
+            echo $this->load->view('examples/page_footer', '', true);
         }
     }
 
@@ -59,11 +57,11 @@ class Examples extends MY_Controller
     {
         $this->is_logged_in();
 
-        echo $this->load->view('examples/page_header', '', TRUE);
+        echo $this->load->view('examples/page_header', '', true);
 
         echo '<p>Welcome Home</p>';
 
-        echo $this->load->view('examples/page_footer', '', TRUE);
+        echo $this->load->view('examples/page_footer', '', true);
     }
 
     // -----------------------------------------------------------------------
@@ -78,32 +76,27 @@ class Examples extends MY_Controller
      */
     public function optional_login_test()
     {
-        if( $this->verify_min_level(1) )
-        {
+        if ($this->verify_min_level(1)) {
             $page_content = '<p>Although not required, you are logged in!</p>';
-        }
-        elseif( $this->tokens->match && $this->optional_login() )
-        {
+        } elseif ($this->tokens->match && $this->optional_login()) {
             // Let Community Auth handle the login attempt ...
-        }
-        else
-        {
+        } else {
             // Notice parameter set to TRUE, which designates this as an optional login
-            $this->setup_login_form(TRUE);
+            $this->setup_login_form(true);
 
             $page_content = '<p>You are not logged in, but can still see this page.</p>';
 
             // Form helper needed
             $this->load->helper('form');
 
-            $page_content .= $this->load->view('examples/login_form', '', TRUE);
+            $page_content .= $this->load->view('examples/login_form', '', true);
         }
 
-        echo $this->load->view('examples/page_header', '', TRUE);
+        echo $this->load->view('examples/page_header', '', true);
 
         echo $page_content;
 
-        echo $this->load->view('examples/page_footer', '', TRUE);
+        echo $this->load->view('examples/page_footer', '', true);
     }
 
     // -----------------------------------------------------------------------
@@ -119,34 +112,31 @@ class Examples extends MY_Controller
     {
         $this->is_logged_in();
 
-        echo $this->load->view('examples/page_header', '', TRUE);
+        echo $this->load->view('examples/page_header', '', true);
 
         echo '<p>';
-        if( ! empty( $this->auth_role ) )
-        {
+        if (! empty($this->auth_role)) {
             echo $this->auth_role . ' logged in!<br />
                 User ID is ' . $this->auth_user_id . '<br />
                 Auth level is ' . $this->auth_level . '<br />
                 Username is ' . $this->auth_username;
 
-            if( $http_user_cookie_contents = $this->input->cookie( config_item('http_user_cookie_name') ) )
-            {
-                $http_user_cookie_contents = unserialize( $http_user_cookie_contents );
+            if ($http_user_cookie_contents = $this->input->cookie(config_item('http_user_cookie_name'))) {
+                $http_user_cookie_contents = unserialize($http_user_cookie_contents);
 
                 echo '<br />
                     <pre>';
 
-                print_r( $http_user_cookie_contents );
+                print_r($http_user_cookie_contents);
 
                 echo '</pre>';
             }
 
-            if( config_item('add_acl_query_to_auth_functions') && $this->acl )
-            {
+            if (config_item('add_acl_query_to_auth_functions') && $this->acl) {
                 echo '<br />
                     <pre>';
 
-                print_r( $this->acl );
+                print_r($this->acl);
 
                 echo '</pre>';
             }
@@ -156,19 +146,16 @@ class Examples extends MY_Controller
              * If query not performed during authentication,
              * the acl_permits function will query the DB.
              */
-            if( $this->acl_permits('general.secret_action') )
-            {
+            if ($this->acl_permits('general.secret_action')) {
                 echo '<p>ACL permission grants action!</p>';
             }
-        }
-        else
-        {
+        } else {
             echo 'Nobody logged in.';
         }
 
         echo '</p>';
 
-        echo $this->load->view('examples/page_footer', '', TRUE);
+        echo $this->load->view('examples/page_footer', '', true);
     }
 
     // -----------------------------------------------------------------------
@@ -192,15 +179,15 @@ class Examples extends MY_Controller
     {
         // Customize this array for your user
         $user_data = [
-            'username'   => 'skunkbot',
-            'passwd'     => 'PepeLePew7',
-            'email'      => 'skunkbot@example.com',
+            'username' => 'skunkbot',
+            'passwd' => 'PepeLePew7',
+            'email' => 'skunkbot@example.com',
             'auth_level' => '1', // 9 if you want to login @ examples/index.
         ];
 
         $this->is_logged_in();
 
-        echo $this->load->view('examples/page_header', '', TRUE);
+        echo $this->load->view('examples/page_header', '', true);
 
         // Load resources
         $this->load->helper('auth');
@@ -208,7 +195,7 @@ class Examples extends MY_Controller
         $this->load->model('examples/validation_callables');
         $this->load->library('form_validation');
 
-        $this->form_validation->set_data( $user_data );
+        $this->form_validation->set_data($user_data);
 
         $validation_rules = [
             [
@@ -216,8 +203,8 @@ class Examples extends MY_Controller
                 'label' => 'username',
                 'rules' => 'max_length[12]|is_unique[' . db_table('user_table') . '.username]',
                 'errors' => [
-                    'is_unique' => 'Username already in use.'
-                ]
+                    'is_unique' => 'Username already in use.',
+                ],
             ],
             [
                 'field' => 'passwd',
@@ -227,54 +214,51 @@ class Examples extends MY_Controller
                     'required',
                     [
                         '_check_password_strength',
-                        [ $this->validation_callables, '_check_password_strength' ]
-                    ]
+                        [$this->validation_callables, '_check_password_strength'],
+                    ],
                 ],
                 'errors' => [
-                    'required' => 'The password field is required.'
-                ]
+                    'required' => 'The password field is required.',
+                ],
             ],
             [
-                'field'  => 'email',
-                'label'  => 'email',
-                'rules'  => 'trim|required|valid_email|is_unique[' . db_table('user_table') . '.email]',
+                'field' => 'email',
+                'label' => 'email',
+                'rules' => 'trim|required|valid_email|is_unique[' . db_table('user_table') . '.email]',
                 'errors' => [
-                    'is_unique' => 'Email address already in use.'
-                ]
+                    'is_unique' => 'Email address already in use.',
+                ],
             ],
             [
                 'field' => 'auth_level',
                 'label' => 'auth_level',
-                'rules' => 'required|integer|in_list[1,6,9]'
-            ]
+                'rules' => 'required|integer|in_list[1,6,9]',
+            ],
         ];
 
-        $this->form_validation->set_rules( $validation_rules );
+        $this->form_validation->set_rules($validation_rules);
 
-        if( $this->form_validation->run() )
-        {
-            $user_data['passwd']     = $this->authentication->hash_passwd($user_data['passwd']);
-            $user_data['user_id']    = $this->examples_model->get_unused_id();
+        if ($this->form_validation->run()) {
+            $user_data['passwd'] = $this->authentication->hash_passwd($user_data['passwd']);
+            $user_data['user_id'] = $this->examples_model->get_unused_id();
             $user_data['created_at'] = date('Y-m-d H:i:s');
 
             // If username is not used, it must be entered into the record as NULL
-            if( empty( $user_data['username'] ) )
-            {
-                $user_data['username'] = NULL;
+            if (empty($user_data['username'])) {
+                $user_data['username'] = null;
             }
 
             $this->db->set($user_data)
                 ->insert(db_table('user_table'));
 
-            if( $this->db->affected_rows() == 1 )
+            if ($this->db->affected_rows() == 1) {
                 echo '<h1>Congratulations</h1>' . '<p>User ' . $user_data['username'] . ' was created.</p>';
-        }
-        else
-        {
+            }
+        } else {
             echo '<h1>User Creation Error(s)</h1>' . validation_errors();
         }
 
-        echo $this->load->view('examples/page_footer', '', TRUE);
+        echo $this->load->view('examples/page_footer', '', true);
     }
 
     // -----------------------------------------------------------------------
@@ -288,17 +272,19 @@ class Examples extends MY_Controller
     public function login()
     {
         // Method should not be directly accessible
-        if( $this->uri->uri_string() == 'examples/login')
+        if ($this->uri->uri_string() == 'examples/login') {
             show_404();
+        }
 
-        if( strtolower( $_SERVER['REQUEST_METHOD'] ) == 'post' )
+        if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
             $this->require_min_level(1);
+        }
 
         $this->setup_login_form();
 
-        $html = $this->load->view('examples/page_header', '', TRUE);
-        $html .= $this->load->view('examples/login_form', '', TRUE);
-        $html .= $this->load->view('examples/page_footer', '', TRUE);
+        $html = $this->load->view('examples/page_header', '', true);
+        $html .= $this->load->view('examples/login_form', '', true);
+        $html .= $this->load->view('examples/page_footer', '', true);
 
         echo $html;
     }
@@ -313,9 +299,9 @@ class Examples extends MY_Controller
         $this->authentication->logout();
 
         // Set redirect protocol
-        $redirect_protocol = USE_SSL ? 'https' : NULL;
+        $redirect_protocol = USE_SSL ? 'https' : null;
 
-        redirect( site_url( LOGIN_PAGE . '?' . AUTH_LOGOUT_PARAM . '=1', $redirect_protocol ) );
+        redirect(site_url(LOGIN_PAGE . '?' . AUTH_LOGOUT_PARAM . '=1', $redirect_protocol));
     }
 
     // --------------------------------------------------------------
@@ -329,57 +315,49 @@ class Examples extends MY_Controller
         $this->load->model('examples/examples_model');
 
         /// If IP or posted email is on hold, display message
-        if( $on_hold = $this->authentication->current_hold_status( TRUE ) )
-        {
+        if ($on_hold = $this->authentication->current_hold_status(true)) {
             $view_data['disabled'] = 1;
-        }
-        else
-        {
+        } else {
             // If the form post looks good
-            if( $this->tokens->match && $this->input->post('email') )
-            {
-                if( $user_data = $this->examples_model->get_recovery_data( $this->input->post('email') ) )
-                {
+            if ($this->tokens->match && $this->input->post('email')) {
+                if ($user_data = $this->examples_model->get_recovery_data($this->input->post('email'))) {
                     // Check if user is banned
-                    if( $user_data->banned == '1' )
-                    {
+                    if ($user_data->banned == '1') {
                         // Log an error if banned
-                        $this->authentication->log_error( $this->input->post('email', TRUE ) );
+                        $this->authentication->log_error($this->input->post('email', true));
 
                         // Show special message for banned user
                         $view_data['banned'] = 1;
-                    }
-                    else
-                    {
+                    } else {
                         /**
                          * Use the authentication libraries salt generator for a random string
                          * that will be hashed and stored as the password recovery key.
                          * Method is called 4 times for a 88 character string, and then
                          * trimmed to 72 characters
                          */
-                        $recovery_code = substr( $this->authentication->random_salt()
+                        $recovery_code = substr($this->authentication->random_salt()
                             . $this->authentication->random_salt()
                             . $this->authentication->random_salt()
-                            . $this->authentication->random_salt(), 0, 72 );
+                            . $this->authentication->random_salt(), 0, 72);
 
                         // Update user record with recovery code and time
                         $this->examples_model->update_user_raw_data(
                             $user_data->user_id,
                             [
                                 'passwd_recovery_code' => $this->authentication->hash_passwd($recovery_code),
-                                'passwd_recovery_date' => date('Y-m-d H:i:s')
+                                'passwd_recovery_date' => date('Y-m-d H:i:s'),
                             ]
                         );
 
                         // Set the link protocol
-                        $link_protocol = USE_SSL ? 'https' : NULL;
+                        $link_protocol = USE_SSL ? 'https' : null;
 
                         // Set URI of link
                         $link_uri = 'examples/recovery_verification/' . $user_data->user_id . '/' . $recovery_code;
 
                         $view_data['special_link'] = anchor(
-                            site_url( $link_uri, $link_protocol ),
-                            site_url( $link_uri, $link_protocol ),
+                            site_url($link_uri, $link_protocol),
+                            site_url($link_uri, $link_protocol),
                             'target ="_blank"'
                         );
 
@@ -388,21 +366,20 @@ class Examples extends MY_Controller
                 }
 
                 // There was no match, log an error, and display a message
-                else
-                {
+                else {
                     // Log the error
-                    $this->authentication->log_error( $this->input->post('email', TRUE ) );
+                    $this->authentication->log_error($this->input->post('email', true));
 
                     $view_data['no_match'] = 1;
                 }
             }
         }
 
-        echo $this->load->view('examples/page_header', '', TRUE);
+        echo $this->load->view('examples/page_header', '', true);
 
-        echo $this->load->view('examples/recover_form', ( isset( $view_data ) ) ? $view_data : '', TRUE );
+        echo $this->load->view('examples/recover_form', (isset($view_data)) ? $view_data : '', true);
 
-        echo $this->load->view('examples/page_footer', '', TRUE);
+        echo $this->load->view('examples/page_footer', '', true);
     }
 
     // --------------------------------------------------------------
@@ -412,51 +389,47 @@ class Examples extends MY_Controller
      *
      * @param  int     the user ID
      * @param  string  the passwd recovery code
+     * @param mixed $user_id
+     * @param mixed $recovery_code
      */
-    public function recovery_verification( $user_id = '', $recovery_code = '' )
+    public function recovery_verification($user_id = '', $recovery_code = '')
     {
         /// If IP is on hold, display message
-        if( $on_hold = $this->authentication->current_hold_status( TRUE ) )
-        {
+        if ($on_hold = $this->authentication->current_hold_status(true)) {
             $view_data['disabled'] = 1;
-        }
-        else
-        {
+        } else {
             // Load resources
             $this->load->model('examples/examples_model');
 
-            if(
+            if (
                 /**
                  * Make sure that $user_id is a number and less
                  * than or equal to 10 characters long
                  */
-                is_numeric( $user_id ) && strlen( $user_id ) <= 10 &&
+                is_numeric($user_id) && strlen($user_id) <= 10 &&
 
                 /**
                  * Make sure that $recovery code is exactly 72 characters long
                  */
-                strlen( $recovery_code ) == 72 &&
+                strlen($recovery_code) == 72 &&
 
                 /**
                  * Try to get a hashed password recovery
                  * code and user salt for the user.
                  */
-                $recovery_data = $this->examples_model->get_recovery_verification_data( $user_id ) )
-            {
+                $recovery_data = $this->examples_model->get_recovery_verification_data($user_id)) {
                 /**
                  * Check that the recovery code from the
                  * email matches the hashed recovery code.
                  */
-                if( $recovery_data->passwd_recovery_code == $this->authentication->check_passwd( $recovery_data->passwd_recovery_code, $recovery_code ) )
-                {
-                    $view_data['user_id']       = $user_id;
-                    $view_data['username']     = $recovery_data->username;
+                if ($recovery_data->passwd_recovery_code == $this->authentication->check_passwd($recovery_data->passwd_recovery_code, $recovery_code)) {
+                    $view_data['user_id'] = $user_id;
+                    $view_data['username'] = $recovery_data->username;
                     $view_data['recovery_code'] = $recovery_data->passwd_recovery_code;
                 }
 
                 // Link is bad so show message
-                else
-                {
+                else {
                     $view_data['recovery_error'] = 1;
 
                     // Log an error
@@ -465,8 +438,7 @@ class Examples extends MY_Controller
             }
 
             // Link is bad so show message
-            else
-            {
+            else {
                 $view_data['recovery_error'] = 1;
 
                 // Log an error
@@ -476,17 +448,16 @@ class Examples extends MY_Controller
             /**
              * If form submission is attempting to change password
              */
-            if( $this->tokens->match )
-            {
+            if ($this->tokens->match) {
                 $this->examples_model->recovery_password_change();
             }
         }
 
-        echo $this->load->view('examples/page_header', '', TRUE);
+        echo $this->load->view('examples/page_header', '', true);
 
-        echo $this->load->view( 'examples/choose_password_form', $view_data, TRUE );
+        echo $this->load->view('examples/choose_password_form', $view_data, true);
 
-        echo $this->load->view('examples/page_footer', '', TRUE);
+        echo $this->load->view('examples/page_footer', '', true);
     }
 
     // --------------------------------------------------------------
@@ -501,21 +472,19 @@ class Examples extends MY_Controller
         $this->tokens->name = config_item('login_token_name');
 
         $data['javascripts'] = [
-            'https://code.jquery.com/jquery-1.12.0.min.js'
+            'https://code.jquery.com/jquery-1.12.0.min.js',
         ];
 
-        if( $this->authentication->on_hold === TRUE )
-        {
+        if ($this->authentication->on_hold === true) {
             $data['on_hold_message'] = 1;
         }
 
         // This check for on hold is for normal login attempts
-        else if( $on_hold = $this->authentication->current_hold_status() )
-        {
+        elseif ($on_hold = $this->authentication->current_hold_status()) {
             $data['on_hold_message'] = 1;
         }
 
-        $link_protocol = USE_SSL ? 'https' : NULL;
+        $link_protocol = USE_SSL ? 'https' : null;
 
         $data['final_head'] = "<script>
             $(document).ready(function(){
@@ -523,7 +492,7 @@ class Examples extends MY_Controller
                     $.ajax({
                         type: 'post',
                         cache: false,
-                        url: '" . site_url('examples/ajax_attempt_login', $link_protocol ) . "',
+                        url: '" . site_url('examples/ajax_attempt_login', $link_protocol) . "',
                         data: {
                             'login_string': $('#login_string').val(),
                             'login_pass': $('#login_pass').val(),
@@ -535,7 +504,7 @@ class Examples extends MY_Controller
                             console.log(response);
                             if(response.status == 1){
                                 $('form').replaceWith('<p>You are now logged in.</p>');
-                                $('#login-link').attr('href','" . site_url('examples/logout', $link_protocol ) . "').text('Logout');
+                                $('#login-link').attr('href','" . site_url('examples/logout', $link_protocol) . "').text('Logout');
                                 $('#ajax-login-link').parent().hide();
                             }else if(response.status == 0 && response.on_hold){
                                 $('form').hide();
@@ -551,9 +520,9 @@ class Examples extends MY_Controller
             });
         </script>";
 
-        $html = $this->load->view('examples/page_header', $data, TRUE);
-        $html .= $this->load->view('examples/ajax_login_form', $data, TRUE);
-        $html .= $this->load->view('examples/page_footer', '', TRUE);
+        $html = $this->load->view('examples/page_header', $data, true);
+        $html .= $this->load->view('examples/ajax_login_form', $data, true);
+        $html .= $this->load->view('examples/page_footer', '', true);
 
         echo $html;
     }
@@ -565,60 +534,57 @@ class Examples extends MY_Controller
      */
     public function ajax_attempt_login()
     {
-        if( $this->input->is_ajax_request() )
-        {
+        if ($this->input->is_ajax_request()) {
             // Allow this page to be an accepted login page
-            $this->config->set_item('allowed_pages_for_login', ['examples/ajax_attempt_login'] );
+            $this->config->set_item('allowed_pages_for_login', ['examples/ajax_attempt_login']);
 
             // Make sure we aren't redirecting after a successful login
-            $this->authentication->redirect_after_login = FALSE;
+            $this->authentication->redirect_after_login = false;
 
             // Do the login attempt
-            $this->auth_data = $this->authentication->user_status( 0 );
+            $this->auth_data = $this->authentication->user_status(0);
 
             // Set user variables if successful login
-            if( $this->auth_data )
+            if ($this->auth_data) {
                 $this->_set_user_variables();
+            }
 
             // Call the post auth hook
             $this->post_auth_hook();
 
             // Login attempt was successful
-            if( $this->auth_data )
-            {
+            if ($this->auth_data) {
                 echo json_encode([
-                    'status'   => 1,
-                    'user_id'  => $this->auth_user_id,
+                    'status' => 1,
+                    'user_id' => $this->auth_user_id,
                     'username' => $this->auth_username,
-                    'level'    => $this->auth_level,
-                    'role'     => $this->auth_role,
-                    'email'    => $this->auth_email
+                    'level' => $this->auth_level,
+                    'role' => $this->auth_role,
+                    'email' => $this->auth_email,
                 ]);
             }
 
             // Login attempt not successful
-            else
-            {
+            else {
                 $this->tokens->name = config_item('login_token_name');
 
                 $on_hold = (
-                    $this->authentication->on_hold === TRUE OR
+                    $this->authentication->on_hold === true or
                     $this->authentication->current_hold_status()
                 )
                 ? 1 : 0;
 
                 echo json_encode([
-                    'status'  => 0,
-                    'count'   => $this->authentication->login_errors_count,
+                    'status' => 0,
+                    'count' => $this->authentication->login_errors_count,
                     'on_hold' => $on_hold,
-                    'token'   => $this->tokens->token()
+                    'token' => $this->tokens->token(),
                 ]);
             }
         }
 
         // Show 404 if not AJAX
-        else
-        {
+        else {
             show_404();
         }
     }
@@ -642,13 +608,11 @@ class Examples extends MY_Controller
         // Add the username or email address of the user you want logged in:
         $username_or_email_address = '';
 
-        if( ! empty( $username_or_email_address ) )
-        {
+        if (! empty($username_or_email_address)) {
             $auth_model = $this->authentication->auth_model;
 
             // Get normal authentication data using username or email address
-            if( $auth_data = $this->{$auth_model}->get_auth_data( $username_or_email_address ) )
-            {
+            if ($auth_data = $this->{$auth_model}->get_auth_data($username_or_email_address)) {
                 /**
                  * If redirect param exists, user redirected there.
                  * This is entirely optional, and can be removed if
@@ -657,11 +621,9 @@ class Examples extends MY_Controller
                 $this->authentication->redirect_after_login();
 
                 // Set auth related session / cookies
-                $this->authentication->maintain_state( $auth_data );
+                $this->authentication->maintain_state($auth_data);
             }
-        }
-        else
-        {
+        } else {
             echo 'Example requires that you set a username or email address.';
         }
     }

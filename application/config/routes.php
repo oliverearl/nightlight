@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -53,4 +53,4 @@ $route['default_controller'] = 'Home_Controller';
 $route['test'] = 'twigtest';
 $route['404_override'] = '';
 $route['LOGIN_PAGE'] = 'examples/login';
-$route['translate_uri_dashes'] = FALSE;
+$route['translate_uri_dashes'] = false;

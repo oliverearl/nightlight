@@ -1,8 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class TwigTest extends CI_Controller {
-
+class TwigTest extends CI_Controller
+{
     /**
      * Index Page for this controller.
      *
@@ -18,7 +18,6 @@ class TwigTest extends CI_Controller {
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
-
     public function __construct()
     {
         parent::__construct();
@@ -26,14 +25,13 @@ class TwigTest extends CI_Controller {
         $this->load->library('session');
         $this->load->library('twig');
         $this->load->helper('url');
-
     }
 
     public function index()
     {
         $data = [
             'nick' => 'Mike',
-            'login_ok' => true
+            'login_ok' => true,
         ];
         $this->session->set_userdata($data);
         $this->twig->addGlobal('session', $this->session);

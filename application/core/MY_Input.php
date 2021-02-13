@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Community Auth - Input Class Extension
@@ -18,9 +18,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * We are also going to encrypt and decrypt cookies if the session is being encrypted.
  */
-
-class MY_Input extends CI_Input {
-
+class MY_Input extends CI_Input
+{
     /**
      * Constructor
      */
@@ -43,34 +42,36 @@ class MY_Input extends CI_Input {
      * @param    string    the cookie path
      * @param    string    the cookie prefix
      * @param    bool    true makes the cookie secure
+     * @param mixed $name
+     * @param mixed $value
+     * @param mixed $expire
+     * @param mixed $domain
+     * @param mixed $path
+     * @param mixed $prefix
+     * @param mixed $secure
+     * @param mixed $httponly
      * @return    void
      */
-    public function set_cookie($name, $value = '', $expire = 0, $domain = '', $path = '/', $prefix = '', $secure = FALSE, $httponly = FALSE)
+    public function set_cookie($name, $value = '', $expire = 0, $domain = '', $path = '/', $prefix = '', $secure = false, $httponly = false)
     {
-        if (is_array($name))
-        {
+        if (is_array($name)) {
             // always leave 'name' in last place, as the loop will break otherwise, due to $$item
-            foreach (array('value', 'expire', 'domain', 'path', 'prefix', 'secure', 'httponly', 'name') as $item)
-            {
-                if (isset($name[$item]))
-                {
+            foreach (['value', 'expire', 'domain', 'path', 'prefix', 'secure', 'httponly', 'name'] as $item) {
+                if (isset($name[$item])) {
                     $$item = $name[$item];
                 }
             }
         }
 
-        if ($prefix === '' && config_item('cookie_prefix') !== '')
-        {
+        if ($prefix === '' && config_item('cookie_prefix') !== '') {
             $prefix = config_item('cookie_prefix');
         }
 
-        if ($domain == '' && config_item('cookie_domain') != '')
-        {
+        if ($domain == '' && config_item('cookie_domain') != '') {
             $domain = config_item('cookie_domain');
         }
 
-        if ($path === '/' && config_item('cookie_path') !== '/')
-        {
+        if ($path === '/' && config_item('cookie_path') !== '/') {
             $path = config_item('cookie_path');
         }
 
@@ -85,17 +86,13 @@ class MY_Input extends CI_Input {
         }
         */
 
-        if ($httponly === FALSE && config_item('cookie_httponly') !== FALSE)
-        {
+        if ($httponly === false && config_item('cookie_httponly') !== false) {
             $httponly = config_item('cookie_httponly');
         }
 
-        if ( ! is_numeric($expire) OR $expire < 0)
-        {
+        if (! is_numeric($expire) or $expire < 0) {
             $expire = 1;
-        }
-        else
-        {
+        } else {
             $expire = ($expire > 0) ? time() + $expire : 0;
         }
 
@@ -105,49 +102,48 @@ class MY_Input extends CI_Input {
          *
          * If the session is being encrypted, we may as well encrypt the cookie value too.
          */
-        if( config_item('encrypt_all_cookies') === TRUE )
-        {
-            $CI =& get_instance();
+        if (config_item('encrypt_all_cookies') === true) {
+            $CI = & get_instance();
 
-            $value = $CI->encryption->encrypt( $value );
+            $value = $CI->encryption->encrypt($value);
         }
         // END MODIFICATION ------------------------
 
-        setcookie($prefix.$name, $value, $expire, $path, $domain, $secure, $httponly);
+        setcookie($prefix . $name, $value, $expire, $path, $domain, $secure, $httponly);
     }
 
     // ------------------------------------------------------------------------
 
     /**
-    * Fetch an item from the COOKIE array
-    *
-    * If the requested cookie is not the
-    * session cookie, we need to decode it.
-    *
-    * This whole method should be considered modified.
-    *
-    * @access    public
-    * @param    string
-    * @param    bool
-    * @return    string
-    */
-    function cookie($index = NULL, $xss_clean = NULL)
+     * Fetch an item from the COOKIE array
+     *
+     * If the requested cookie is not the
+     * session cookie, we need to decode it.
+     *
+     * This whole method should be considered modified.
+     *
+     * @access    public
+     * @param    string
+     * @param    bool
+     * @param null|mixed $index
+     * @param null|mixed $xss_clean
+     * @return    string
+     */
+    public function cookie($index = null, $xss_clean = null)
     {
         $value = $this->_fetch_from_array($_COOKIE, $index, $xss_clean);
 
-        if( config_item('encrypt_all_cookies') === TRUE && $index != config_item('sess_cookie_name') )
-        {
-            $CI =& get_instance();
+        if (config_item('encrypt_all_cookies') === true && $index != config_item('sess_cookie_name')) {
+            $CI = & get_instance();
 
-            $value = $CI->encryption->decrypt( $value );
+            $value = $CI->encryption->decrypt($value);
         }
 
         return $value;
     }
 
     // ------------------------------------------------------------------------
-
 }
 
 /* End of file MY_Input.php */
-/* Location: /community_auth/core/MY_Input.php */ 
+/* Location: /community_auth/core/MY_Input.php */
