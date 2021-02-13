@@ -58,7 +58,10 @@ $autoload['packages'] = [];
 |
 |    $autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = [];
+$autoload['libraries'] = [
+    'env',
+    'twig',
+];
 
 /*
 | -------------------------------------------------------------------
@@ -89,7 +92,10 @@ $autoload['drivers'] = [];
 |
 |    $autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = ['url'];
+$autoload['helper'] = [
+    'general',
+    'url',
+];
 
 /*
 | -------------------------------------------------------------------

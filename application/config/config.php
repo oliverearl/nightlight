@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = env('CI_BASEURL', 'localhost:8000');
+$config['base_url'] = "https://{$_SERVER['SERVER_NAME']}";
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ $config['base_url'] = env('CI_BASEURL', 'localhost:8000');
 | variable so that it is blank.
 |
 */
-$config['index_page'] = env('CI_INDEX_PAGE', 'index.php');
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -100,7 +100,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = false;
+$config['enable_hooks'] = true;
 
 /*
 |--------------------------------------------------------------------------
@@ -324,7 +324,7 @@ $config['cache_query_string'] = false;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = env('CI_ENCRYPTION_KEY', '');
+$config['encryption_key'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -489,6 +489,7 @@ $config['compress_output'] = false;
 |
 */
 $config['time_reference'] = 'local';
+date_default_timezone_set('Europe/London');
 
 /*
 |--------------------------------------------------------------------------
