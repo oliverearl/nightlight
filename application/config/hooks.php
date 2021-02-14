@@ -23,3 +23,10 @@ $hook['post_system'] = [
     'filename' => 'auth_sess_check.php',
     'filepath' => 'third_party/community_auth/hooks',
 ];
+
+$hook['post_controller_constructor'] = [
+    'class' => 'LanguageLoader',
+    'function' => 'initialise',
+    'filename' => 'LanguageLoader.php',
+    'filepath' => 'hooks',
+];
