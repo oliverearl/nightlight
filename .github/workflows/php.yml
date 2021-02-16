@@ -43,6 +43,9 @@ jobs:
               if: steps.composer-cache.outputs.cache-hit != 'true'
               run: composer install --prefer-dist --no-progress --no-suggest
 
+            - name: Create blank env file # until we need a database
+              run: cp .env.example .env
+
             - name: Run linter
               run: composer run-script ci-lint
 
