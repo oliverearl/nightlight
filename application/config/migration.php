@@ -11,7 +11,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | and disable it back when you're done.
 |
 */
-$config['migration_enabled'] = false;
+$config['migration_enabled'] = true;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ $config['migration_enabled'] = false;
 |       defaults to 'sequential' for backward compatibility with CI2.
 |
 */
-$config['migration_type'] = 'timestamp';
+$config['migration_type'] = 'sequential';
 
 /*
 |--------------------------------------------------------------------------
@@ -57,7 +57,7 @@ $config['migration_table'] = 'migrations';
 | in your code to have the latest migration.
 |
 */
-$config['migration_auto_latest'] = false;
+$config['migration_auto_latest'] = env('MIGRATIONS_ENABLED', false);
 
 /*
 |--------------------------------------------------------------------------

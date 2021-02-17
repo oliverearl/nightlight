@@ -56,8 +56,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'pages';
 $route['404_override'] = '';
 
-$route['cy'] = 'language/cy';
-$route['en'] = 'language/en';
+$route['cy'] = 'languages/cy';
+$route['en'] = 'languages/en';
 
-$route['LOGIN_PAGE'] = 'examples/login';
 $route['translate_uri_dashes'] = false;
