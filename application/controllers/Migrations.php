@@ -35,4 +35,9 @@ class Migrations extends CI_Controller
             echo 'Migrations complete' . PHP_EOL;
         }
     }
+
+    public function migrate(): void
+    {
+        $this->index();
+    }
 }
