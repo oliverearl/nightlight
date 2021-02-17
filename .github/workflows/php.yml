@@ -10,16 +10,6 @@ jobs:
     linux_tests:
         runs-on: ubuntu-latest
 
-        services:
-            mysql:
-                image: mysql:5.7
-                env:
-                    MYSQL_ROOT_PASSWORD: password
-                    MYSQL_DATABASE: nightlight
-                ports:
-                    - 33306:3306
-                options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
         strategy:
             fail-fast: true
             matrix:
@@ -53,23 +43,19 @@ jobs:
               if: steps.composer-cache.outputs.cache-hit != 'true'
               run: composer install --prefer-dist --no-progress --no-suggest
 
+            - name: Create sqlite3 database
+              run: touch ./public/db.sqlite
+
             - name: Create .env file
               run: |
                 touch .env
-                echo DB_DSN="mysql:host=127.0.0.1;port=3306;dbname=nightlight" >> .env
-                echo DB_USERNAME=root >> .env
-                echo DB_PASSWORD=password >> .env
-                echo DB_DRIVER=pdo >> .env
+                echo DB_DATABASE=db.sqlite >> .env
+                echo DB_DRIVER=sqlite3 >> .env
                 echo MIGRATIONS_ENABLED=true >> .env
                 cat .env
 
             - name: Run linter
               run: composer run-script ci-lint
-
-            - name: Sleep for 30 seconds to allow MySQL to settle
-              uses: jakejarvis/wait-action@master
-              with:
-                time: '30s'
 
             - name: Run migrations
               run: composer run-script migrate

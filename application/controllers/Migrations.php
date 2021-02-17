@@ -24,7 +24,7 @@ class Migrations extends CI_Controller
     {
         $this->load->library('migration');
 
-        $migration = $this->migration->current();
+        $migration = $this->migration->latest();
 
         // looks stupid but requires strict checking
         if ($migration === true) {
