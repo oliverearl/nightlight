@@ -36,6 +36,9 @@
         ],
         "ci-lint": [
             "./vendor/bin/php-cs-fixer fix --config=.php_cs -v --dry-run --stop-on-violation --using-cache=no"
+        ],
+        "migrate": [
+            "cd ./public && php index.php migrations migrate"
         ]
     },
     "config": {

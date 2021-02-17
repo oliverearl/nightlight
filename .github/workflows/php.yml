@@ -10,6 +10,13 @@ jobs:
     linux_tests:
         runs-on: ubuntu-latest
 
+        services:
+            mysql:
+                image: mysql:5.7
+                env:
+                    MYSQL_ALLOW_EMPTY_PASSWORD: yes
+                    MYSQL_DATABASE: nightlight
+
         strategy:
             fail-fast: true
             matrix:
@@ -43,11 +50,22 @@ jobs:
               if: steps.composer-cache.outputs.cache-hit != 'true'
               run: composer install --prefer-dist --no-progress --no-suggest
 
-            - name: Create blank env file # until we need a database
-              run: cp .env.example .env
+            - name: Create .env file
+              run: |
+                touch .env
+                echo DB_HOSTNAME=localhost >> .env
+                echo DB_USERNAME=root >> .env
+                echo DB_PASSWORD="" >> .env
+                echo DB_DATABASE=nightlight >> .env
+                echo DB_DRIVER=mysqli >> .env
+                echo MIGRATIONS_ENABLED=true >> .env
+                cat .env
 
             - name: Run linter
               run: composer run-script ci-lint
+
+            - name: Run migrations
+              run: composer run-script migrate
 
             - name: Run test suite
               run: composer run-script test
