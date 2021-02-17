@@ -1,4 +1,4 @@
-<?php  
+<?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
@@ -19,17 +19,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * Allows to check role just about anywhere
  *
  * @param string The role or comma delimited string of roles
- * @return bool 
+ * @return bool
  */
-if( ! function_exists('is_role') )
-{
-    function is_role( $role = '' )
+if (! function_exists('is_role')) {
+    function is_role($role = '')
     {
-        $CI =& get_instance();
+        $CI = & get_instance();
 
         $auth_model = $CI->authentication->auth_model;
 
-        return $CI->$auth_model->is_role( $role );
+        return $CI->$auth_model->is_role($role);
     }
 }
 
@@ -40,17 +39,16 @@ if( ! function_exists('is_role') )
  *
  * @param string The category name and action code to check for the logged in user.
  *               This string is joined with a period.
- * @return bool 
+ * @return bool
  */
-if( ! function_exists('acl_permits') )
-{
-    function acl_permits( $str )
+if (! function_exists('acl_permits')) {
+    function acl_permits($str)
     {
-        $CI =& get_instance();
+        $CI = & get_instance();
 
         $auth_model = $CI->authentication->auth_model;
 
-        return $CI->$auth_model->acl_permits( $str );
+        return $CI->$auth_model->acl_permits($str);
     }
 }
 
@@ -63,15 +61,14 @@ if( ! function_exists('acl_permits') )
  *
  * @return  string  the true name (with CI prefix) of the table
  */
-if( ! function_exists('db_table') )
-{
-    function db_table( $name )
+if (! function_exists('db_table')) {
+    function db_table($name)
     {
-        $CI =& get_instance();
+        $CI = & get_instance();
 
         $auth_model = $CI->authentication->auth_model;
 
-        return $CI->$auth_model->db_table( $name );
+        return $CI->$auth_model->db_table($name);
     }
 }
 

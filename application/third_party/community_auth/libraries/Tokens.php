@@ -1,9 +1,9 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Community Auth - Form Tokens Library - V1.0.2
- * 
+ *
  * Community Auth is an open source authentication application for CodeIgniter 3
  *
  * @package     Community Auth
@@ -12,7 +12,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @license     BSD - http://www.opensource.org/licenses/BSD-3-Clause
  * @link        http://community-auth.com
  */
-
 class tokens
 {
     /**
@@ -29,7 +28,7 @@ class tokens
      * @var mixed
      * @access public
      */
-    public $token = FALSE;
+    public $token = false;
 
     /**
      * The value of the posted token
@@ -37,7 +36,7 @@ class tokens
      * @var mixed
      * @access public
      */
-    public $posted_value = FALSE;
+    public $posted_value = false;
 
     /**
      * An array of valid tokens
@@ -53,7 +52,7 @@ class tokens
      * @var bool
      * @access public
      */
-    public $match = FALSE;
+    public $match = false;
 
     /**
      * The CodeIgniter super object
@@ -78,7 +77,7 @@ class tokens
      * @var bool
      * @access public
      */
-    private $debug = FALSE;
+    private $debug = false;
 
     /**
      * Whether or not to encrypt the tokens.
@@ -89,20 +88,19 @@ class tokens
      * @var bool
      * @access private
      */
-    private $encrypted_tokens = TRUE;
+    private $encrypted_tokens = true;
 
     /**
      * Class constructor
      */
     public function __construct()
     {
-        if( is_https() )
-        {
+        if (is_https()) {
             // Set the current scheme / protocol
             $this->scheme = 'https';
         }
 
-        $this->CI =& get_instance();
+        $this->CI = & get_instance();
         $this->CI->load->library('encryption');
 
         // Set existing tokens in jar
@@ -116,57 +114,53 @@ class tokens
 
     /**
      * Check the token status with a provided token name, or "token" by default
+     * @param mixed $rename
+     * @param mixed $dump_jar_on_match
      */
-    public function token_check( $rename = '', $dump_jar_on_match = FALSE )
+    public function token_check($rename = '', $dump_jar_on_match = false)
     {
         // If rename provided, check that token name
-        $this->name = ( $rename == '' ) ? config_item('token_name') : $rename;
+        $this->name = ($rename == '') ? config_item('token_name') : $rename;
 
         // If no token jar contents, no reason to proceed
-        if( ! empty( $this->jar ) )
-        {
+        if (! empty($this->jar)) {
             // Set the posted_value variable
-            if( $this->posted_value = $this->CI->input->post( $this->name ) )
-            {
+            if ($this->posted_value = $this->CI->input->post($this->name)) {
                 // If the posted value matches one in the jar
-                if( in_array( $this->posted_value, $this->jar ) )
-                {
+                if (in_array($this->posted_value, $this->jar)) {
                     // Successful token match !
-                    $this->match = TRUE;
+                    $this->match = true;
 
                     // Dump all tokens ?
-                    if( $dump_jar_on_match )
-                    {
+                    if ($dump_jar_on_match) {
                         $this->jar = [];
 
                         $this->save_tokens_cookie();
                     }
 
                     // Just delete the matching token
-                    else
-                    {
+                    else {
                         // What token jar key was the matching token ?
-                        $matching_key = array_search( $this->posted_value, $this->jar );
+                        $matching_key = array_search($this->posted_value, $this->jar);
 
                         // Remove the matching token from the jar
-                        unset( $this->jar[ $matching_key ] );
+                        unset($this->jar[ $matching_key ]);
 
                         // Auto generate a new token
                         $this->generate_form_token();
                     }
 
-                    if( $this->debug )
-                    {
-                        log_message( 'debug', count( $this->jar ) . '@token_check' );
-                        log_message( 'debug', json_encode( $this->jar ) );
+                    if ($this->debug) {
+                        log_message('debug', count($this->jar) . '@token_check');
+                        log_message('debug', json_encode($this->jar));
                     }
 
-                    return TRUE;
+                    return true;
                 }
             }
         }
 
-        return FALSE;
+        return false;
     }
 
     // -----------------------------------------------------------------------
@@ -176,8 +170,7 @@ class tokens
      */
     public function generate_form_token()
     {
-        if( ! $this->token )
-        {
+        if (! $this->token) {
             // Create a unique token
             $this->token = substr(md5(uniqid() . microtime() . rand()), 0, 8);
 
@@ -185,15 +178,13 @@ class tokens
             $this->jar[] = $this->token;
 
             // The token jar can only hold so many tokens
-            while( count( $this->jar ) > config_item('token_jar_size') )
-            {
-                array_shift( $this->jar );
+            while (count($this->jar) > config_item('token_jar_size')) {
+                array_shift($this->jar);
             }
 
-            if( $this->debug )
-            {
-                log_message( 'debug', count( $this->jar ) . '@generate_form_token' );
-                log_message( 'debug', json_encode( $this->jar ) );
+            if ($this->debug) {
+                log_message('debug', count($this->jar) . '@generate_form_token');
+                log_message('debug', json_encode($this->jar));
             }
 
             $this->save_tokens_cookie();
@@ -221,16 +212,15 @@ class tokens
      */
     public function save_tokens_cookie()
     {
-        $token_cookie_name = ( $this->scheme == 'http' )
+        $token_cookie_name = ($this->scheme == 'http')
             ? config_item('http_tokens_cookie')
             : config_item('https_tokens_cookie');
 
-        $cookie_secure = ( $this->scheme == 'http' ) ? FALSE : TRUE;
+        $cookie_secure = ($this->scheme == 'http') ? false : true;
 
-        if( $this->debug )
-        {
-            log_message( 'debug', count( $this->jar ) . '@save_tokens_cookie' );
-            log_message( 'debug', json_encode( $this->jar ) );
+        if ($this->debug) {
+            log_message('debug', count($this->jar) . '@save_tokens_cookie');
+            log_message('debug', json_encode($this->jar));
         }
 
         setcookie(
@@ -258,17 +248,15 @@ class tokens
          * If we read in the tokens more than once, it will override
          * changes that may have been made, such as deleting a token.
          */
-        if( empty( $this->jar ) )
-        {
-            $this->jar = ( isset( $_COOKIE[ $token_cookie_name ] ) )
-                ? $this->unpack_tokens( $token_cookie_name )
+        if (empty($this->jar)) {
+            $this->jar = (isset($_COOKIE[ $token_cookie_name ]))
+                ? $this->unpack_tokens($token_cookie_name)
                 : [];
         }
 
-        if( $this->debug )
-        {
-            log_message( 'debug', count( $this->jar ) . '@_set_jar' );
-            log_message( 'debug', json_encode( $this->jar ) );
+        if ($this->debug) {
+            log_message('debug', count($this->jar) . '@_set_jar');
+            log_message('debug', json_encode($this->jar));
         }
 
         return $this->jar;
@@ -278,13 +266,13 @@ class tokens
 
     /**
      * Unpack the tokens
+     * @param mixed $token_cookie_name
      */
-    protected function unpack_tokens( $token_cookie_name )
+    protected function unpack_tokens($token_cookie_name)
     {
         $tokens = $_COOKIE[ $token_cookie_name ];
 
-        if( $this->encrypted_tokens )
-        {
+        if ($this->encrypted_tokens) {
             // Save the current encryption class settings
             $this->CI->encryption->save_settings();
 
@@ -292,13 +280,13 @@ class tokens
             $this->CI->encryption->use_defaults();
 
             // Decode the tokens
-            $tokens = $this->CI->encryption->decrypt( $tokens );
+            $tokens = $this->CI->encryption->decrypt($tokens);
 
             // Restore the saved encryption class settings
             $this->CI->encryption->restore_settings();
         }
 
-        $tokens = explode( '|', $tokens );
+        $tokens = explode('|', $tokens);
 
         return $tokens;
     }
@@ -311,19 +299,16 @@ class tokens
     protected function pack_tokens()
     {
         // If jar contains any unset indexes, remove them
-        foreach( $this->jar as $token )
-        {
-            if( ! empty( $token ) )
-            {
+        foreach ($this->jar as $token) {
+            if (! empty($token)) {
                 $tokens[] = $token;
             }
         }
 
         // We have tokens to implode or we don't
-        $tokens = isset( $tokens ) ? implode( '|', $tokens ) : '';
+        $tokens = isset($tokens) ? implode('|', $tokens) : '';
 
-        if( $this->encrypted_tokens )
-        {
+        if ($this->encrypted_tokens) {
             // Save the current encryption class settings
             $this->CI->encryption->save_settings();
 
@@ -331,7 +316,7 @@ class tokens
             $this->CI->encryption->use_defaults();
 
             // Encode the tokens
-            $tokens = $this->CI->encryption->encrypt( $tokens );
+            $tokens = $this->CI->encryption->encrypt($tokens);
 
             // Restore the saved encryption class settings
             $this->CI->encryption->restore_settings();
@@ -344,4 +329,4 @@ class tokens
 }
 
 /* End of file Tokens.php */
-/* Location: /community_auth/libraries/Tokens.php */ 
+/* Location: /community_auth/libraries/Tokens.php */

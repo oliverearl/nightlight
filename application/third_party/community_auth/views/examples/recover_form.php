@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Community Auth - Recover Form View
@@ -17,8 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <h1>Account Recovery</h1>
 
 <?php
-if( isset( $disabled ) )
-{
+if (isset($disabled)) {
     echo '
         <div style="border:1px solid red;">
             <p>
@@ -28,14 +27,12 @@ if( isset( $disabled ) )
                 If you have exceeded the maximum login attempts, or exceeded
                 the allowed number of password recovery attempts, account recovery 
                 will be disabled for a short period of time. 
-                Please wait ' . ( (int) config_item('seconds_on_hold') / 60 ) . ' 
+                Please wait ' . ((int)config_item('seconds_on_hold') / 60) . ' 
                 minutes, or contact us if you require assistance gaining access to your account.
             </p>
         </div>
     ';
-}
-else if( isset( $banned ) )
-{
+} elseif (isset($banned)) {
     echo '
         <div style="border:1px solid red;">
             <p>
@@ -50,9 +47,7 @@ else if( isset( $banned ) )
             </p>
         </div>
     ';
-}
-else if( isset( $confirmation ) )
-{
+} elseif (isset($confirmation)) {
     echo '
         <div style="border:1px solid green;">
             <p>
@@ -76,9 +71,7 @@ else if( isset( $confirmation ) )
             <p>' . $special_link . '</p>
         </div>
     ';
-}
-else if( isset( $no_match ) )
-{
+} elseif (isset($no_match)) {
     echo '
         <div  style="border:1px solid red;">
             <p class="feedback_header">
@@ -88,9 +81,7 @@ else if( isset( $no_match ) )
     ';
 
     $show_form = 1;
-}
-else
-{
+} else {
     echo '
         <p>
             If you\'ve forgotten your password and/or username, 
@@ -102,8 +93,7 @@ else
 
     $show_form = 1;
 }
-if( isset( $show_form ) )
-{
+if (isset($show_form)) {
     ?>
 
          <?php echo form_open(); ?>
@@ -114,16 +104,15 @@ if( isset( $show_form ) )
 
                         <?php
                             // EMAIL ADDRESS *************************************************
-                            echo form_label('Email Address','email', ['class'=>'form_label'] );
+                            echo form_label('Email Address', 'email', ['class' => 'form_label']);
 
-                            $input_data = [
-                                'name'        => 'email',
-                                'id'        => 'email',
-                                'class'        => 'form_input',
-                                'maxlength' => 255
+    $input_data = [
+                                'name' => 'email',
+                                'id' => 'email',
+                                'class' => 'form_input',
+                                'maxlength' => 255,
                             ];
-                            echo form_input($input_data);
-                        ?>
+    echo form_input($input_data); ?>
 
                     </div>
                 </fieldset>
@@ -133,12 +122,11 @@ if( isset( $show_form ) )
                         <?php
                             // SUBMIT BUTTON **************************************************************
                             $input_data = [
-                                'name'  => 'submit',
-                                'id'    => 'submit_button',
-                                'value' => 'Send Email'
+                                'name' => 'submit',
+                                'id' => 'submit_button',
+                                'value' => 'Send Email',
                             ];
-                            echo form_submit($input_data);
-                        ?>
+    echo form_submit($input_data); ?>
 
                     </div>
                 </div>

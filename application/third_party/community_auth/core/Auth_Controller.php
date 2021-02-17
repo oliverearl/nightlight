@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Community Auth - Auth Controller
@@ -12,9 +12,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @license     BSD - http://www.opensource.org/licenses/BSD-3-Clause
  * @link        http://community-auth.com
  */
-
-class Auth_Controller extends CI_Controller {
-
+class Auth_Controller extends CI_Controller
+{
     /**
      * The logged-in user's user ID
      *
@@ -75,7 +74,7 @@ class Auth_Controller extends CI_Controller {
      * @var mixed
      * @access public
      */
-    public $acl = NULL;
+    public $acl;
 
     /**
      * Either 'https' or 'http' depending on the current environment
@@ -98,31 +97,30 @@ class Auth_Controller extends CI_Controller {
          */
         $this->_load_dependencies();
 
-
         /**
          * Set no-cache headers so pages are never cached by the browser.
          * This is necessary because if the browser caches a page, the
          * login or logout link and user specific data may not change when
          * the logged in status changes.
          */
-         header('Expires: Wed, 13 Dec 1972 18:37:00 GMT');
+        header('Expires: Wed, 13 Dec 1972 18:37:00 GMT');
         header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
         header('Pragma: no-cache');
 
         /**
          * Set the request protocol
          */
-        if( is_https() )
+        if (is_https()) {
             $this->protocol = 'https';
+        }
 
         /**
          * If the http user cookie is set, make user data available in views
          */
-        if( get_cookie( config_item('http_user_cookie_name') ) )
-        {
-            $http_user_data = unserialize_data( get_cookie( config_item('http_user_cookie_name') ) );
+        if (get_cookie(config_item('http_user_cookie_name'))) {
+            $http_user_data = unserialize_data(get_cookie(config_item('http_user_cookie_name')));
 
-            $this->load->vars( $http_user_data );
+            $this->load->vars($http_user_data);
         }
 
         //$this->output->enable_profiler();
@@ -146,12 +144,13 @@ class Auth_Controller extends CI_Controller {
         $this->config->load('db_tables');
         $this->config->load('authentication');
         $this->load->library([
-            'session','tokens','Authentication'
+            'session','tokens','Authentication',
         ])->helper([
-            'serialization','cookie'
+            'serialization','cookie',
         ])->model('auth_model');
-        if(config_item('declared_auth_model') != 'auth_model')
+        if (config_item('declared_auth_model') != 'auth_model') {
             $this->load->model(config_item('declared_auth_model'));
+        }
     }
 
     // -----------------------------------------------------------------------
@@ -161,40 +160,39 @@ class Auth_Controller extends CI_Controller {
      * User assumes your priveledges are linear in relationship to account types.
      *
      * @param   int    the minimum level of user required
+     * @param mixed $level
      * @return  mixed  either returns TRUE or doesn't return
      */
-    protected function require_min_level( $level )
+    protected function require_min_level($level)
     {
         // Has user already been authenticated?
-        if( ! is_null( $this->auth_level ) && $this->auth_level >= $level )
-        {
-            return TRUE;
+        if (! is_null($this->auth_level) && $this->auth_level >= $level) {
+            return true;
         }
 
         // Check if logged in or if login attempt
-        $this->auth_data = $this->authentication->user_status( $level );
+        $this->auth_data = $this->authentication->user_status($level);
 
         // Set user variables if successful login or user is logged in
-        if( $this->auth_data )
+        if ($this->auth_data) {
             $this->_set_user_variables();
+        }
 
         // Call the post auth hook
         $this->post_auth_hook();
 
         // Successful login or user is logged in
-        if( $this->auth_data )
-        {
-            return TRUE;
+        if ($this->auth_data) {
+            return true;
         }
 
         // Else check if we need to redirect to the login page
-        else if( $this->uri->uri_string() != LOGIN_PAGE )
-        {
+        elseif ($this->uri->uri_string() != LOGIN_PAGE) {
             $this->_redirect_to_login_page();
         }
 
         // Else this is a failed login attempt or the login page was loaded
-        return FALSE;
+        return false;
     }
 
     // --------------------------------------------------------------
@@ -204,36 +202,36 @@ class Auth_Controller extends CI_Controller {
      * or groups, specified by group name(s).
      *
      * @param  string  a group name or names as a comma separated string.
+     * @param mixed $group_names
      */
-    protected function require_group( $group_names )
+    protected function require_group($group_names)
     {
         // Get all groups from config
         $groups = config_item('groups');
 
         // Get group(s) allowed to login
-        $group_array = explode( ',', $group_names );
+        $group_array = explode(',', $group_names);
 
         // Trim off any space chars
-        $group_array = array_map( 'trim', $group_array );
+        $group_array = array_map('trim', $group_array);
 
         // Initialize array of roles allowed to login
         $roles = [];
 
         // Add group members to roles array
-        foreach( $group_array as $group )
-        {
+        foreach ($group_array as $group) {
             // Turn group members into an array
-            $temp_arr = explode( ',', $groups[$group] );
+            $temp_arr = explode(',', $groups[$group]);
 
             // Merge array of group members with roles array
-            $roles = array_merge( $roles, $temp_arr );
+            $roles = array_merge($roles, $temp_arr);
         }
 
         // Turn the array of roles into a comma seperated string
-        $roles_string = implode( ',', $roles );
+        $roles_string = implode(',', $roles);
 
         // Try to login via require_role method
-        return $this->require_role( $roles_string );
+        return $this->require_role($roles_string);
     }
 
     // --------------------------------------------------------------
@@ -242,45 +240,44 @@ class Auth_Controller extends CI_Controller {
      * Require a login by user of a specific account type, specified by name(s).
      *
      * @param   string  a comma seperated string of account types that are allowed.
+     * @param mixed $roles
      * @return  mixed  either returns TRUE or doesn't return
      */
-    protected function require_role( $roles )
+    protected function require_role($roles)
     {
         // Turn the roles string into an array or roles
-        $role_array = explode( ',', $roles );
+        $role_array = explode(',', $roles);
 
         // Trim off any space chars
-        $role_array = array_map( 'trim', $role_array );
+        $role_array = array_map('trim', $role_array);
 
         // Has user already been authenticated?
-        if( ! is_null( $this->auth_role ) && in_array( $this->auth_role, $role_array ) )
-        {
-            return TRUE;
+        if (! is_null($this->auth_role) && in_array($this->auth_role, $role_array)) {
+            return true;
         }
 
         // Check if logged in or if login attempt
-        $this->auth_data = $this->authentication->user_status( $role_array );
+        $this->auth_data = $this->authentication->user_status($role_array);
 
         // Set user variables if successful login or user is logged in
-        if( $this->auth_data )
+        if ($this->auth_data) {
             $this->_set_user_variables();
+        }
 
         $this->post_auth_hook();
 
         // Successful login or user is logged in
-        if( $this->auth_data )
-        {
-            return TRUE;
+        if ($this->auth_data) {
+            return true;
         }
 
         // Else check if we need to redirect to the login page
-        else if( $this->uri->uri_string() != LOGIN_PAGE )
-        {
+        elseif ($this->uri->uri_string() != LOGIN_PAGE) {
             $this->_redirect_to_login_page();
         }
 
         // Else this is a failed login attempt or the login page was loaded
-        return FALSE;
+        return false;
     }
 
     // --------------------------------------------------------------
@@ -292,19 +289,19 @@ class Auth_Controller extends CI_Controller {
     {
         // Determine the login redirect
         $redirect = $this->input->get(AUTH_REDIRECT_PARAM)
-            ? urlencode( $this->input->get(AUTH_REDIRECT_PARAM) )
-            : urlencode( $this->uri->uri_string() );
+            ? urlencode($this->input->get(AUTH_REDIRECT_PARAM))
+            : urlencode($this->uri->uri_string());
 
         // Set the redirect protocol
-        $redirect_protocol = USE_SSL ? 'https' : NULL;
+        $redirect_protocol = USE_SSL ? 'https' : null;
 
         // Load URL helper for the site_url function
         $this->load->helper('url');
 
         // Redirect to the login form
         header(
-            'Location: ' . site_url( LOGIN_PAGE . '?' . AUTH_REDIRECT_PARAM . '=' . $redirect, $redirect_protocol ),
-            TRUE,
+            'Location: ' . site_url(LOGIN_PAGE . '?' . AUTH_REDIRECT_PARAM . '=' . $redirect, $redirect_protocol),
+            true,
             302
         );
 
@@ -323,22 +320,25 @@ class Auth_Controller extends CI_Controller {
     protected function optional_login()
     {
         // Has user already been authenticated?
-        if( $this->auth_data )
-            return TRUE;
+        if ($this->auth_data) {
+            return true;
+        }
 
-        $this->auth_data = $this->authentication->user_status( 0 );
+        $this->auth_data = $this->authentication->user_status(0);
 
         // Set user variables if successful login or user is logged in
-        if( $this->auth_data )
+        if ($this->auth_data) {
             $this->_set_user_variables();
+        }
 
         // Call the post auth hook
         $this->post_auth_hook();
 
-        if( $this->auth_data )
-            return TRUE;
+        if ($this->auth_data) {
+            return true;
+        }
 
-        return FALSE;
+        return false;
     }
 
     // --------------------------------------------------------------
@@ -348,7 +348,7 @@ class Auth_Controller extends CI_Controller {
      */
     protected function is_logged_in()
     {
-        return $this->verify_min_level( 1 );
+        return $this->verify_min_level(1);
     }
 
     // --------------------------------------------------------------
@@ -358,29 +358,31 @@ class Auth_Controller extends CI_Controller {
      * This is for use when login is not required, but beneficial.
      *
      * @param   int    the minimum level of user to be verified.
+     * @param mixed $level
      * @return  bool  TRUE if logged in
      */
-    protected function verify_min_level( $level )
+    protected function verify_min_level($level)
     {
         // Has user already been authenticated?
-        if( ! is_null( $this->auth_level ) && $this->auth_level >= $level )
-        {
-            return TRUE;
+        if (! is_null($this->auth_level) && $this->auth_level >= $level) {
+            return true;
         }
 
-        $this->auth_data = $this->authentication->check_login( $level );
+        $this->auth_data = $this->authentication->check_login($level);
 
         // Set user variables if user is logged in
-        if( $this->auth_data )
+        if ($this->auth_data) {
             $this->_set_user_variables();
+        }
 
         // Call the post auth hook
         $this->post_auth_hook();
 
-        if( $this->auth_data )
-            return TRUE;
+        if ($this->auth_data) {
+            return true;
+        }
 
-        return FALSE;
+        return false;
     }
 
     // --------------------------------------------------------------
@@ -390,34 +392,36 @@ class Auth_Controller extends CI_Controller {
      * This is for use when login is not required, but beneficial.
      *
      * @param   string  comma seperated string of account types that to be verified.
+     * @param mixed $roles
      * @return  bool  TRUE if logged in
      */
-    protected function verify_role( $roles )
+    protected function verify_role($roles)
     {
-        $role_array = explode( ',', $roles );
+        $role_array = explode(',', $roles);
 
         // Trim off any space chars
-        $role_array = array_map( 'trim', $role_array );
+        $role_array = array_map('trim', $role_array);
 
         // Has user already been authenticated?
-        if( ! is_null( $this->auth_role ) && in_array( $this->auth_role, $role_array ) )
-        {
-            return TRUE;
+        if (! is_null($this->auth_role) && in_array($this->auth_role, $role_array)) {
+            return true;
         }
 
-        $this->auth_data = $this->authentication->check_login( $role_array );
+        $this->auth_data = $this->authentication->check_login($role_array);
 
         // Set user variables if user is logged in
-        if( $this->auth_data )
+        if ($this->auth_data) {
             $this->_set_user_variables();
+        }
 
         // Call the post auth hook
         $this->post_auth_hook();
 
-        if( $this->auth_data )
-            return TRUE;
+        if ($this->auth_data) {
+            return true;
+        }
 
-        return FALSE;
+        return false;
     }
 
     // --------------------------------------------------------------
@@ -428,34 +432,33 @@ class Auth_Controller extends CI_Controller {
     protected function _set_user_variables()
     {
         // Set user specific variables to be available in controllers
-        $this->auth_user_id  = $this->auth_data->user_id;
+        $this->auth_user_id = $this->auth_data->user_id;
         $this->auth_username = $this->auth_data->username;
-        $this->auth_level    = $this->auth_data->auth_level;
-        $this->auth_role     = $this->authentication->roles[$this->auth_data->auth_level];
-        $this->auth_email    = $this->auth_data->email;
+        $this->auth_level = $this->auth_data->auth_level;
+        $this->auth_role = $this->authentication->roles[$this->auth_data->auth_level];
+        $this->auth_email = $this->auth_data->email;
 
         // Set user specific variables to be available in all views
         $data = [
-            'auth_user_id'  => $this->auth_user_id,
+            'auth_user_id' => $this->auth_user_id,
             'auth_username' => $this->auth_username,
-            'auth_level'    => $this->auth_level,
-            'auth_role'     => $this->auth_role,
-            'auth_email'    => $this->auth_email
+            'auth_level' => $this->auth_level,
+            'auth_role' => $this->auth_role,
+            'auth_email' => $this->auth_email,
         ];
 
         // Set user specific variables to be available as config items
-        $this->config->set_item( 'auth_user_id',  $this->auth_user_id );
-        $this->config->set_item( 'auth_username', $this->auth_username );
-        $this->config->set_item( 'auth_level',    $this->auth_level );
-        $this->config->set_item( 'auth_role',     $this->auth_role );
-        $this->config->set_item( 'auth_email',    $this->auth_email );
+        $this->config->set_item('auth_user_id', $this->auth_user_id);
+        $this->config->set_item('auth_username', $this->auth_username);
+        $this->config->set_item('auth_level', $this->auth_level);
+        $this->config->set_item('auth_role', $this->auth_role);
+        $this->config->set_item('auth_email', $this->auth_email);
 
         // Add ACL permissions if ACL query turned on
-        if( config_item('add_acl_query_to_auth_functions') )
-        {
-            $this->acl   = $this->auth_data->acl;
+        if (config_item('add_acl_query_to_auth_functions')) {
+            $this->acl = $this->auth_data->acl;
             $data['acl'] = $this->acl;
-            $this->config->set_item( 'acl', $this->acl );
+            $this->config->set_item('acl', $this->acl);
         }
 
         // Load vars
@@ -468,8 +471,9 @@ class Auth_Controller extends CI_Controller {
      * Show any login error message.
      *
      * @param  bool  if login is optional or required
+     * @param mixed $optional_login
      */
-    protected function setup_login_form( $optional_login = FALSE )
+    protected function setup_login_form($optional_login = false)
     {
         $this->tokens->name = config_item('login_token_name');
 
@@ -482,20 +486,17 @@ class Auth_Controller extends CI_Controller {
          * drastic unless this happens more than an acceptable amount of times.
          * See the 'deny_access_at' config setting in config/authentication.php
          */
-        if( $this->authentication->on_hold === TRUE )
-        {
+        if ($this->authentication->on_hold === true) {
             $view_data['on_hold_message'] = 1;
         }
 
         // This check for on hold is for normal login attempts
-        else if( $on_hold = $this->authentication->current_hold_status() )
-        {
+        elseif ($on_hold = $this->authentication->current_hold_status()) {
             $view_data['on_hold_message'] = 1;
         }
 
         // Display a login error message if there was a form post
-        if( $this->authentication->login_error === TRUE )
-        {
+        if ($this->authentication->login_error === true) {
             // Display a failed login attempt message
             $view_data['login_error_mesg'] = 1;
         }
@@ -506,23 +507,22 @@ class Auth_Controller extends CI_Controller {
             : '?' . AUTH_REDIRECT_PARAM . '=' . config_item('default_login_redirect');
 
         // If optional login, redirect to optional login's page
-        if( $optional_login )
-        {
-            $redirect = '?' . AUTH_REDIRECT_PARAM . '=' . urlencode( $this->uri->uri_string() );
+        if ($optional_login) {
+            $redirect = '?' . AUTH_REDIRECT_PARAM . '=' . urlencode($this->uri->uri_string());
 
-            $view_data['optional_login'] = TRUE;
+            $view_data['optional_login'] = true;
         }
 
         // Set the link protocol
-        $link_protocol = USE_SSL ? 'https' : NULL;
+        $link_protocol = USE_SSL ? 'https' : null;
 
         // Load URL helper for site_url function
         $this->load->helper('url');
 
         // Set the login URL
-        $view_data['login_url'] = site_url( LOGIN_PAGE . $redirect, $link_protocol );
+        $view_data['login_url'] = site_url(LOGIN_PAGE . $redirect, $link_protocol);
 
-        $this->load->vars( $view_data );
+        $this->load->vars($view_data);
     }
 
     // --------------------------------------------------------------
@@ -531,13 +531,14 @@ class Auth_Controller extends CI_Controller {
      * Checks if logged in user is of a specific account type
      *
      * @param   string  a comma seperated string of account types to check.
+     * @param mixed $role
      * @return  bool
      */
-    protected function is_role( $role = '' )
+    protected function is_role($role = '')
     {
         $auth_model = $this->authentication->auth_model;
 
-        return $this->$auth_model->is_role( $role );
+        return $this->$auth_model->is_role($role);
     }
 
     // --------------------------------------------------------------
@@ -547,18 +548,20 @@ class Auth_Controller extends CI_Controller {
      *
      * @param  string  the concatenation of ACL category
      *                 and action, joined by a period.
+     * @param mixed $str
      * @return bool
      */
-    public function acl_permits( $str )
+    public function acl_permits($str)
     {
         $auth_model = $this->authentication->auth_model;
 
         // Bool indicates permission
-        $bool = $this->$auth_model->acl_permits( $str );
+        $bool = $this->$auth_model->acl_permits($str);
 
         // Update the controller's ACL property
-        if( is_null( $this->acl ) )
+        if (is_null($this->acl)) {
             $this->acl = $this->$auth_model->acl;
+        }
 
         return $bool;
     }
@@ -572,24 +575,21 @@ class Auth_Controller extends CI_Controller {
     protected function force_ssl()
     {
         // Force SSL if available
-        if( USE_SSL !== 0 && $this->protocol == 'http' )
-        {
+        if (USE_SSL !== 0 && $this->protocol == 'http') {
             // Allow redirect to the HTTPS page
-            if( config_item('redirect_to_https') !== 0 )
-            {
+            if (config_item('redirect_to_https') !== 0) {
                 // Load URL helper for the site_url function
                 $this->load->helper('url');
 
                 // Set link protocol
-                $link_protocol = USE_SSL ? 'https' : NULL;
+                $link_protocol = USE_SSL ? 'https' : null;
 
                 // 301 Redirect to the secure page
-                header("Location: " . site_url( trim( $this->uri->uri_string(),'/' ), $link_protocol ), TRUE, 301);
+                header('Location: ' . site_url(trim($this->uri->uri_string(), '/'), $link_protocol), true, 301);
             }
 
             // Show a 404 error
-            else
-            {
+            else {
                 show_404();
             }
 
@@ -613,11 +613,9 @@ class Auth_Controller extends CI_Controller {
      */
     protected function post_auth_hook()
     {
-        return;
     }
 
     // -----------------------------------------------------------------------
-
 }
 
 /* End of file Auth_Controller.php */

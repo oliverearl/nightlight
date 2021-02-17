@@ -14,16 +14,13 @@
     </style>
     <?php
         // Add any javascripts
-        if( isset( $javascripts ) )
-        {
-            foreach( $javascripts as $js )
-            {
+        if (isset($javascripts)) {
+            foreach ($javascripts as $js) {
                 echo '<script src="' . $js . '"></script>' . "\n";
             }
         }
 
-        if( isset( $final_head ) )
-        {
+        if (isset($final_head)) {
             echo $final_head;
         }
     ?>
@@ -32,28 +29,30 @@
 <div id="menu">
     <ul>
         <?php
-            $link_protocol = USE_SSL ? 'https' : NULL;
+            $link_protocol = USE_SSL ? 'https' : null;
 
-            if( $this->router->default_controller == 'examples/home' )
-                echo '<li>' . anchor( site_url('', $link_protocol ),'Home') . '</li>';
+            if ($this->router->default_controller == 'examples/home') {
+                echo '<li>' . anchor(site_url('', $link_protocol), 'Home') . '</li>';
+            }
         ?>
         <li><?php
-            echo isset( $auth_user_id )
+            echo isset($auth_user_id)
                 ? logout_anchor('examples/logout', 'Logout')
-                : login_anchor('examples', 'Login', 'id="login-link"' );
+                : login_anchor('examples', 'Login', 'id="login-link"');
         ?></li>
         <?php
-            if( ! isset( $auth_user_id ) )
-                echo '<li>' . anchor( site_url('examples/ajax_login', $link_protocol ),'Ajax Login','id="ajax-login-link"') . '</li>';
+            if (! isset($auth_user_id)) {
+                echo '<li>' . anchor(site_url('examples/ajax_login', $link_protocol), 'Ajax Login', 'id="ajax-login-link"') . '</li>';
+            }
         ?>
         <li>
-            <?php echo anchor( site_url('examples/optional_login_test', $link_protocol ),'Optional Login'); ?>
+            <?php echo anchor(site_url('examples/optional_login_test', $link_protocol), 'Optional Login'); ?>
         </li>
         <li>
-            <?php echo anchor( site_url('examples/simple_verification', $link_protocol ),'Simple Verification'); ?>
+            <?php echo anchor(site_url('examples/simple_verification', $link_protocol), 'Simple Verification'); ?>
         </li>
         <li>
-            <?php echo anchor( site_url('examples/create_user', $link_protocol ),'Create User'); ?>
+            <?php echo anchor(site_url('examples/create_user', $link_protocol), 'Create User'); ?>
         </li>
     </ul>
 </div>

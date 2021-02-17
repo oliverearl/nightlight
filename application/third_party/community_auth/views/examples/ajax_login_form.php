@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Community Auth - Ajax Login Form View
@@ -12,23 +12,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @license     BSD - http://www.opensource.org/licenses/BSD-3-Clause
  * @link        http://community-auth.com
  */
-
 ?>
 
 <h1>Ajax login</h1>
 
 <?php
-if( ! isset( $on_hold_message ) )
-{
-?>
+if (! isset($on_hold_message)) {
+    ?>
 
     <p>Open up your javascript console to see what is happening when you try to login</p>
 
     <?php
 
-    echo form_open( 'examples/ajax_attempt_login', ['class' => 'std-form'] );
-
-    ?>
+    echo form_open('examples/ajax_attempt_login', ['class' => 'std-form']); ?>
 
         <div>
 
@@ -39,15 +35,14 @@ if( ! isset( $on_hold_message ) )
 
             <label for="login_pass" class="form_label">Password</label>
             <input type="password" name="login_pass" id="login_pass" class="form_input password" <?php
-                if( config_item('max_chars_for_password') > 0 )
+                if (config_item('max_chars_for_password') > 0) {
                     echo 'maxlength="' . config_item('max_chars_for_password') . '"';
-            ?> autocomplete="off" readonly="readonly" onfocus="this.removeAttribute('readonly');" />
+                } ?> autocomplete="off" readonly="readonly" onfocus="this.removeAttribute('readonly');" />
 
 
             <?php
-                if( config_item('allow_remember_me') )
-                {
-            ?>
+                if (config_item('allow_remember_me')) {
+                    ?>
 
                 <br />
 
@@ -55,11 +50,10 @@ if( ! isset( $on_hold_message ) )
                 <input type="checkbox" id="remember_me" name="remember_me" value="yes" />
 
             <?php
-                }
-            ?>
+                } ?>
 
             <input type="hidden" id="max_allowed_attempts" value="<?php echo config_item('max_allowed_attempts'); ?>" />
-            <input type="hidden" id="mins_on_hold" value="<?php echo ( config_item('seconds_on_hold') / 60 ); ?>" />
+            <input type="hidden" id="mins_on_hold" value="<?php echo(config_item('seconds_on_hold') / 60); ?>" />
             <input type="submit" name="submit" value="Login" id="submit_button"  />
 
         </div>
@@ -69,7 +63,7 @@ if( ! isset( $on_hold_message ) )
 }
 
 // EXCESSIVE LOGIN ATTEMPTS ERROR MESSAGE
-$error_display = ! isset( $on_hold_message )
+$error_display = ! isset($on_hold_message)
     ? 'display:none;'
     : '';
 
@@ -83,14 +77,14 @@ echo '
             attempts that this website will allow.
         <p>
         <p>
-            Your access to login and account recovery has been blocked for ' . ( (int) config_item('seconds_on_hold') / 60 ) . ' minutes.
+            Your access to login and account recovery has been blocked for ' . ((int)config_item('seconds_on_hold') / 60) . ' minutes.
         </p>
         <p>
-            Please use the <a href="/examples/recover">Account Recovery</a> after ' . ( (int) config_item('seconds_on_hold') / 60 ) . ' minutes has passed,<br />
+            Please use the <a href="/examples/recover">Account Recovery</a> after ' . ((int)config_item('seconds_on_hold') / 60) . ' minutes has passed,<br />
             or contact us if you require assistance gaining access to your account.
         </p>
     </div>
 ';
 
 /* End of file login_form.php */
-/* Location: /community_auth/views/examples/ajax_login_form.php */ 
+/* Location: /community_auth/views/examples/ajax_login_form.php */

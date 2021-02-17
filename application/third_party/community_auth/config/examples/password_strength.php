@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Community Auth - Password Strength Config
@@ -28,10 +28,10 @@ $config['min_chars_for_password'] = 8;
 | -----------------------------------------------------------------
 | The maximum amount of characters for a valid password.
 | Set to 0 for unlimited length.
-| 
+|
 | Because Community Auth uses CRYPT_BLOWFISH to hash passwords,
-| any password over 72 characters in length is truncated. You 
-| could certainly allow more characters, but only the first 
+| any password over 72 characters in length is truncated. You
+| could certainly allow more characters, but only the first
 | 72 characters are used for the resulting hash.
 */
 

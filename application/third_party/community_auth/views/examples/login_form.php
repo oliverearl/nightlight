@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Community Auth - Login Form View
@@ -12,16 +12,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @license     BSD - http://www.opensource.org/licenses/BSD-3-Clause
  * @link        http://community-auth.com
  */
-
-if( ! isset( $optional_login ) )
-{
+if (! isset($optional_login)) {
     echo '<h1>Login</h1>';
 }
 
-if( ! isset( $on_hold_message ) )
-{
-    if( isset( $login_error_mesg ) )
-    {
+if (! isset($on_hold_message)) {
+    if (isset($login_error_mesg)) {
         echo '
             <div style="border:1px solid red;">
                 <p>
@@ -34,8 +30,7 @@ if( ! isset( $on_hold_message ) )
         ';
     }
 
-    if( $this->input->get(AUTH_LOGOUT_PARAM) )
-    {
+    if ($this->input->get(AUTH_LOGOUT_PARAM)) {
         echo '
             <div style="border:1px solid green">
                 <p>
@@ -45,8 +40,7 @@ if( ! isset( $on_hold_message ) )
         ';
     }
 
-    echo form_open( $login_url, ['class' => 'std-form'] );
-?>
+    echo form_open($login_url, ['class' => 'std-form']); ?>
 
     <div>
 
@@ -57,15 +51,14 @@ if( ! isset( $on_hold_message ) )
 
         <label for="login_pass" class="form_label">Password</label>
         <input type="password" name="login_pass" id="login_pass" class="form_input password" <?php
-            if( config_item('max_chars_for_password') > 0 )
+            if (config_item('max_chars_for_password') > 0) {
                 echo 'maxlength="' . config_item('max_chars_for_password') . '"';
-        ?> autocomplete="off" readonly="readonly" onfocus="this.removeAttribute('readonly');" />
+            } ?> autocomplete="off" readonly="readonly" onfocus="this.removeAttribute('readonly');" />
 
 
         <?php
-            if( config_item('allow_remember_me') )
-            {
-        ?>
+            if (config_item('allow_remember_me')) {
+                ?>
 
             <br />
 
@@ -73,13 +66,11 @@ if( ! isset( $on_hold_message ) )
             <input type="checkbox" id="remember_me" name="remember_me" value="yes" />
 
         <?php
-            }
-        ?>
+            } ?>
 
         <p>
             <?php
-                $link_protocol = USE_SSL ? 'https' : NULL;
-            ?>
+                $link_protocol = USE_SSL ? 'https' : null; ?>
             <a href="<?php echo site_url('examples/recover', $link_protocol); ?>">
                 Can't access your account?
             </a>
@@ -92,10 +83,7 @@ if( ! isset( $on_hold_message ) )
 </form>
 
 <?php
-
-    }
-    else
-    {
+} else {
         // EXCESSIVE LOGIN ATTEMPTS ERROR MESSAGE
         echo '
             <div style="border:1px solid red;">
@@ -107,10 +95,10 @@ if( ! isset( $on_hold_message ) )
                     attempts that this website will allow.
                 <p>
                 <p>
-                    Your access to login and account recovery has been blocked for ' . ( (int) config_item('seconds_on_hold') / 60 ) . ' minutes.
+                    Your access to login and account recovery has been blocked for ' . ((int)config_item('seconds_on_hold') / 60) . ' minutes.
                 </p>
                 <p>
-                    Please use the <a href="/examples/recover">Account Recovery</a> after ' . ( (int) config_item('seconds_on_hold') / 60 ) . ' minutes has passed,<br />
+                    Please use the <a href="/examples/recover">Account Recovery</a> after ' . ((int)config_item('seconds_on_hold') / 60) . ' minutes has passed,<br />
                     or contact us if you require assistance gaining access to your account.
                 </p>
             </div>
@@ -118,4 +106,4 @@ if( ! isset( $on_hold_message ) )
     }
 
 /* End of file login_form.php */
-/* Location: /community_auth/views/examples/login_form.php */ 
+/* Location: /community_auth/views/examples/login_form.php */

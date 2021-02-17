@@ -1,5 +1,5 @@
-<?php 
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Community Auth - MY_form_helper
@@ -18,71 +18,65 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * Creates the opening portion of the form.
  *
- * Modified to accomodate HTTPS actions, and also auto 
+ * Modified to accomodate HTTPS actions, and also auto
  * injects a hidden input for a token. (See Tokens library)
  *
  * @param  string  the URI segments of the form destination
  * @param  array   a key/value pair of attributes
  * @param  array   a key/value pair hidden data
  */
-if( ! function_exists('form_open') )
-{
-    function form_open($action = '', $attributes = array(), $hidden = array())
+if (! function_exists('form_open')) {
+    function form_open($action = '', $attributes = [], $hidden = [])
     {
-        $CI =& get_instance();
+        $CI = & get_instance();
 
         // Set the link protocol to https if secure
-        $link_protocol = ( USE_SSL && is_https() )
+        $link_protocol = (USE_SSL && is_https())
             ? 'https'
-            : NULL;
+            : null;
 
         // If no action is provided then set to the current url
-        if ( ! $action)
-        {
+        if (! $action) {
             $action = $CI->config->site_url($CI->uri->uri_string());
 
-            if( is_https() && parse_url( $action, PHP_URL_SCHEME ) == 'http' )
-                $action = substr( $action, 0, 4 ) . 's' . substr( $action, 4 );
+            if (is_https() && parse_url($action, PHP_URL_SCHEME) == 'http') {
+                $action = substr($action, 0, 4) . 's' . substr($action, 4);
+            }
 
-            $action = ( $_SERVER['QUERY_STRING'] )
+            $action = ($_SERVER['QUERY_STRING'])
                 ? $action . '?' . $_SERVER['QUERY_STRING']
                 : $action;
         }
         // If an action is not a full URL then turn it into one
-        elseif (strpos($action, '://') === FALSE)
-        {
+        elseif (strpos($action, '://') === false) {
             $action = $CI->config->site_url($action);
         }
 
         $attributes = _attributes_to_string($attributes);
 
-        if (stripos($attributes, 'method=') === FALSE)
-        {
+        if (stripos($attributes, 'method=') === false) {
             $attributes .= ' method="post"';
         }
 
-        if (stripos($attributes, 'accept-charset=') === FALSE)
-        {
-            $attributes .= ' accept-charset="'.strtolower(config_item('charset')).'"';
+        if (stripos($attributes, 'accept-charset=') === false) {
+            $attributes .= ' accept-charset="' . strtolower(config_item('charset')) . '"';
         }
 
-        $form = '<form action="'.$action.'"'.$attributes.">\n";
+        $form = '<form action="' . $action . '"' . $attributes . ">\n";
 
         // Add CSRF field if enabled, but leave it out for GET requests and requests to external websites
-        if ($CI->config->item('csrf_protection') === TRUE && strpos($action, $CI->config->base_url('', $link_protocol)) !== FALSE && ! stripos($form, 'method="get"'))
-        {
+        if ($CI->config->item('csrf_protection') === true && strpos($action, $CI->config->base_url('', $link_protocol)) !== false && ! stripos($form, 'method="get"')) {
             $hidden[$CI->security->get_csrf_token_name()] = $CI->security->get_csrf_hash();
         }
 
         // Add MY CSRF token if MY CSRF library is loaded
-        if( $CI->load->is_loaded('tokens') && strpos($action, $CI->config->base_url('', $link_protocol)) !== FALSE  && ! stripos($form, 'method="get"') )
+        if ($CI->load->is_loaded('tokens') && strpos($action, $CI->config->base_url('', $link_protocol)) !== false && ! stripos($form, 'method="get"')) {
             $hidden[ $CI->tokens->name ] = $CI->tokens->token();
+        }
 
-        if (is_array($hidden))
-        {
-            foreach ($hidden as $name => $value)
-            {
-                $form .= '<input type="hidden" name="'.$name.'" value="'.html_escape($value).'" />'."\n";
+        if (is_array($hidden)) {
+            foreach ($hidden as $name => $value) {
+                $form .= '<input type="hidden" name="' . $name . '" value="' . html_escape($value) . '" />' . "\n";
             }
         }
 

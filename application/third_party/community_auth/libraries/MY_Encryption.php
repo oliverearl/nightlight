@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Community Auth - MY_Encryption Library
@@ -12,9 +12,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @license     BSD - http://www.opensource.org/licenses/BSD-3-Clause
  * @link        http://community-auth.com
  */
-
-class MY_Encryption extends CI_Encryption {
-
+class MY_Encryption extends CI_Encryption
+{
     public $saved_settings = [];
 
     /**
@@ -36,9 +35,9 @@ class MY_Encryption extends CI_Encryption {
     public function save_settings()
     {
         $this->saved_settings = [
-            '_key'    => $this->_key,
+            '_key' => $this->_key,
             '_cipher' => $this->_cipher,
-            '_mode'   => $this->_mode
+            '_mode' => $this->_mode,
         ];
     }
 
@@ -49,10 +48,8 @@ class MY_Encryption extends CI_Encryption {
      */
     public function restore_settings()
     {
-        if( ! empty( $this->saved_settings ) )
-        {
-            foreach( $this->saved_settings as $k => $v )
-            {
+        if (! empty($this->saved_settings)) {
+            foreach ($this->saved_settings as $k => $v) {
                 $this->$k = $v;
             }
         }
@@ -65,13 +62,12 @@ class MY_Encryption extends CI_Encryption {
      */
     public function use_defaults()
     {
-        $this->_key    = config_item('encryption_key');
+        $this->_key = config_item('encryption_key');
         $this->_cipher = 'blowfish';
-        $this->_mode   = 'cbc';
+        $this->_mode = 'cbc';
     }
 
     // -----------------------------------------------------------------------
-
 }
 
 // END MY_Encryption class

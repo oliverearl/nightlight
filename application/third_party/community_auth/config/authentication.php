@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Community Auth - Authentication Config
@@ -31,7 +31,7 @@ $config['levels_and_roles'] = [
     '1' => 'volunteer',
     '6' => 'officer',
     '8' => 'coordinator',
-    '9' => 'admin'
+    '9' => 'admin',
 ];
 
 /*
@@ -43,7 +43,7 @@ $config['levels_and_roles'] = [
 */
 
 $config['groups'] = [
-    'volunteers' => 'manager,admin'
+    'volunteers' => 'manager,admin',
 ];
 
 /*
@@ -61,7 +61,7 @@ $config['groups'] = [
 |
 */
 
-$config['add_acl_query_to_auth_functions'] = FALSE;
+$config['add_acl_query_to_auth_functions'] = false;
 
 /*
 | -----------------------------------------------------------------
@@ -105,7 +105,7 @@ $config['denied_access_reason'] = [
     '3' => 'Hacking Attempt',
     '4' => 'Spam',
     '5' => 'Obscene Language',
-    '6' => 'Threatening Language'
+    '6' => 'Threatening Language',
 ];
 
 /*
@@ -142,7 +142,7 @@ $config['seconds_on_hold'] = 600;
 |
 */
 
-$config['disallow_multiple_logins'] = FALSE;
+$config['disallow_multiple_logins'] = false;
 
 /*
 | -----------------------------------------------------------------
@@ -154,7 +154,7 @@ $config['disallow_multiple_logins'] = FALSE;
 |
 */
 
-$config['encrypt_auth_identifiers'] = FALSE;
+$config['encrypt_auth_identifiers'] = false;
 
 /*
 | -----------------------------------------------------------------
@@ -167,7 +167,7 @@ $config['encrypt_auth_identifiers'] = FALSE;
 |
 */
 
-$config['encrypt_all_cookies'] = TRUE;
+$config['encrypt_all_cookies'] = true;
 
 /*
 | -----------------------------------------------------------------
@@ -179,7 +179,7 @@ $config['encrypt_all_cookies'] = TRUE;
 |
 */
 
-$config['allow_remember_me'] = TRUE;
+$config['allow_remember_me'] = true;
 
 /*
 | -----------------------------------------------------------------
@@ -243,9 +243,9 @@ $config['http_user_cookie_elements'] = ['username'];
 |
 */
 
-$config['http_tokens_cookie']  = 'nlHttpTokens';
+$config['http_tokens_cookie'] = 'nlHttpTokens';
 $config['https_tokens_cookie'] = 'nlHttpsTokens';
-$config['token_jar_size']      = 32;
+$config['token_jar_size'] = 32;
 
 /*
 | -----------------------------------------------------------------
@@ -264,7 +264,7 @@ $config['token_jar_size']      = 32;
 |
 */
 
-$config['token_name']       = 'token';
+$config['token_name'] = 'token';
 $config['login_token_name'] = 'loginToken';
 
 /*
@@ -292,7 +292,7 @@ $config['recovery_code_expiration'] = 60 * 60 * 2;
 | the session cookie is immediately re-created.
 */
 
-$config['delete_session_cookie_on_logout'] = TRUE;
+$config['delete_session_cookie_on_logout'] = true;
 
 /*
 | -----------------------------------------------------------------
@@ -303,7 +303,7 @@ $config['delete_session_cookie_on_logout'] = TRUE;
 | The default (TRUE) is to show the login form.
 */
 
-$config['show_login_form_on_logout'] = TRUE;
+$config['show_login_form_on_logout'] = true;
 
 /*
 | -----------------------------------------------------------------
@@ -337,7 +337,7 @@ $config['allowed_pages_for_login'] = [];
 | you can either redirect to the HTTPS version, or serve up a 404 error.
 */
 
-$config['redirect_to_https'] = FALSE;
+$config['redirect_to_https'] = false;
 
 /*
 | -----------------------------------------------------------------
@@ -382,8 +382,7 @@ $config['declared_auth_model'] = 'auth_model';
 #     */10 * * * * /usr/bin/wget http://<YOUR DOMAIN>/crons/auth_sessions_gc -O /dev/null
 #
 
-$config['auth_sessions_gc_on_logout'] = TRUE;
-
+$config['auth_sessions_gc_on_logout'] = true;
 
 /* End of file authentication.php */
 /* Location: /community_auth/config/authentication.php */

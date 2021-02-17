@@ -2,7 +2,7 @@
 
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
-    ->exclude(['application/cache', 'application/third_party', 'application/views', 'system', 'vendor'])
+    ->exclude(['application/cache', 'application/views', 'system', 'vendor'])
     ->name('*.php')
     ->notName('*.twig')
     ->ignoreDotFiles(true)

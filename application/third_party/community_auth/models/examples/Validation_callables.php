@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Community Auth - Validation_callables Model
@@ -12,9 +12,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @license     BSD - http://www.opensource.org/licenses/BSD-3-Clause
  * @link        http://community-auth.com
  */
-
-class Validation_callables extends MY_Model {
-
+class Validation_callables extends MY_Model
+{
     /**
      * undocumented method
      */
@@ -35,9 +34,10 @@ class Validation_callables extends MY_Model {
      * at https://github.com/dropbox/zxcvbn
      *
      * @param   string  the supplied password
+     * @param mixed $password
      * @return  mixed   bool
      */
-    public function _check_password_strength( $password )
+    public function _check_password_strength($password)
     {
         // Password length
         $max = config_item('max_chars_for_password') > 0
@@ -46,44 +46,40 @@ class Validation_callables extends MY_Model {
         $regex = '(?=.{' . config_item('min_chars_for_password') . ',' . $max . '})';
         $error = '<li>At least ' . config_item('min_chars_for_password') . ' characters</li>';
 
-        if( config_item('max_chars_for_password') > 0 )
+        if (config_item('max_chars_for_password') > 0) {
             $error .= '<li>Not more than ' . config_item('max_chars_for_password') . ' characters</li>';
+        }
 
         // Digit(s) required
-        if( config_item('min_digits_for_password') > 0 )
-        {
+        if (config_item('min_digits_for_password') > 0) {
             $regex .= '(?=(?:.*[0-9].*){' . config_item('min_digits_for_password') . ',})';
             $plural = config_item('min_digits_for_password') > 1 ? 's' : '';
             $error .= '<li>' . config_item('min_digits_for_password') . ' number' . $plural . '</li>';
         }
 
         // Lower case letter(s) required
-        if( config_item('min_lowercase_chars_for_password') > 0 )
-        {
+        if (config_item('min_lowercase_chars_for_password') > 0) {
             $regex .= '(?=(?:.*[a-z].*){' . config_item('min_lowercase_chars_for_password') . ',})';
             $plural = config_item('min_lowercase_chars_for_password') > 1 ? 's' : '';
             $error .= '<li>' . config_item('min_lowercase_chars_for_password') . ' lower case letter' . $plural . '</li>';
         }
 
         // Upper case letter(s) required
-        if( config_item('min_uppercase_chars_for_password') > 0 )
-        {
+        if (config_item('min_uppercase_chars_for_password') > 0) {
             $regex .= '(?=(?:.*[A-Z].*){' . config_item('min_uppercase_chars_for_password') . ',})';
             $plural = config_item('min_uppercase_chars_for_password') > 1 ? 's' : '';
             $error .= '<li>' . config_item('min_uppercase_chars_for_password') . ' upper case letter' . $plural . '</li>';
         }
 
         // Non-alphanumeric char(s) required
-        if( config_item('min_non_alphanumeric_chars_for_password') > 0 )
-        {
+        if (config_item('min_non_alphanumeric_chars_for_password') > 0) {
             $regex .= '(?=(?:.*[^a-zA-Z0-9].*){' . config_item('min_non_alphanumeric_chars_for_password') . ',})';
             $plural = config_item('min_non_alphanumeric_chars_for_password') > 1 ? 's' : '';
             $error .= '<li>' . config_item('min_non_alphanumeric_chars_for_password') . ' non-alphanumeric character' . $plural . '</li>';
         }
 
-        if( preg_match( '/^' . $regex . '.*$/', $password ) )
-        {
-            return TRUE;
+        if (preg_match('/^' . $regex . '.*$/', $password)) {
+            return true;
         }
 
         $this->form_validation->set_message(
@@ -95,11 +91,10 @@ class Validation_callables extends MY_Model {
             </span>'
         );
 
-        return FALSE;
+        return false;
     }
 
     // --------------------------------------------------------------
-
 }
 
 /* End of file Validaton_callables.php */

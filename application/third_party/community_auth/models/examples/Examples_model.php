@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Community Auth - Examples Model
@@ -12,20 +12,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @license     BSD - http://www.opensource.org/licenses/BSD-3-Clause
  * @link        http://community-auth.com
  */
-
-class Examples_model extends MY_Model {
-
+class Examples_model extends MY_Model
+{
     /**
      * Update a user record with data not from POST
      *
      * @param  int     the user ID to update
      * @param  array   the data to update in the user table
+     * @param mixed $the_user
+     * @param mixed $user_data
      * @return bool
      */
-    public function update_user_raw_data( $the_user, $user_data = [] )
+    public function update_user_raw_data($the_user, $user_data = [])
     {
         $this->db->where('user_id', $the_user)
-            ->update( $this->db_table('user_table'), $user_data );
+            ->update($this->db_table('user_table'), $user_data);
     }
 
     // --------------------------------------------------------------
@@ -34,20 +35,22 @@ class Examples_model extends MY_Model {
      * Get data for a recovery
      *
      * @param   string  the email address
+     * @param mixed $email
      * @return  mixed   either query data or FALSE
      */
-    public function get_recovery_data( $email )
+    public function get_recovery_data($email)
     {
-        $query = $this->db->select( 'u.user_id, u.email, u.banned' )
-            ->from( $this->db_table('user_table') . ' u' )
-            ->where( 'LOWER( u.email ) =', strtolower( $email ) )
+        $query = $this->db->select('u.user_id, u.email, u.banned')
+            ->from($this->db_table('user_table') . ' u')
+            ->where('LOWER( u.email ) =', strtolower($email))
             ->limit(1)
             ->get();
 
-        if( $query->num_rows() == 1 )
+        if ($query->num_rows() == 1) {
             return $query->row();
+        }
 
-        return FALSE;
+        return false;
     }
 
     // --------------------------------------------------------------
@@ -57,22 +60,24 @@ class Examples_model extends MY_Model {
      * but only if the recovery code hasn't expired.
      *
      * @param  int  the user ID
+     * @param mixed $user_id
      */
-    public function get_recovery_verification_data( $user_id )
+    public function get_recovery_verification_data($user_id)
     {
-        $recovery_code_expiration = date('Y-m-d H:i:s', time() - config_item('recovery_code_expiration') );
+        $recovery_code_expiration = date('Y-m-d H:i:s', time() - config_item('recovery_code_expiration'));
 
-        $query = $this->db->select( 'username, passwd_recovery_code' )
-            ->from( $this->db_table('user_table') )
-            ->where( 'user_id', $user_id )
-            ->where( 'passwd_recovery_date >', $recovery_code_expiration )
+        $query = $this->db->select('username, passwd_recovery_code')
+            ->from($this->db_table('user_table'))
+            ->where('user_id', $user_id)
+            ->where('passwd_recovery_date >', $recovery_code_expiration)
             ->limit(1)
             ->get();
 
-        if ( $query->num_rows() == 1 )
+        if ($query->num_rows() == 1) {
             return $query->row();
+        }
 
-        return FALSE;
+        return false;
     }
 
     // --------------------------------------------------------------
@@ -96,26 +101,25 @@ class Examples_model extends MY_Model {
                     'matches[passwd_confirm]',
                     [
                         '_check_password_strength',
-                        [$this->validation_callables, '_check_password_strength']
-                    ]
-                ]
+                        [$this->validation_callables, '_check_password_strength'],
+                    ],
+                ],
             ],
             [
                 'field' => 'passwd_confirm',
                 'label' => 'CONFIRM NEW PASSWORD',
-                'rules' => 'trim|required'
+                'rules' => 'trim|required',
             ],
             [
-                'field' => 'recovery_code'
+                'field' => 'recovery_code',
             ],
             [
-                'field' => 'user_identification'
-            ]
+                'field' => 'user_identification',
+            ],
         ]);
 
-        if( $this->form_validation->run() !== FALSE )
-        {
-            $this->load->vars( ['validation_passed' => 1] );
+        if ($this->form_validation->run() !== false) {
+            $this->load->vars(['validation_passed' => 1]);
 
             $this->_change_password(
                 $this->input->post('passwd'),
@@ -123,10 +127,8 @@ class Examples_model extends MY_Model {
                 set_value('user_identification'),
                 set_value('recovery_code')
             );
-        }
-        else
-        {
-            $this->load->vars( ['validation_errors' => validation_errors()] );
+        } else {
+            $this->load->vars(['validation_errors' => validation_errors()]);
         }
     }
 
@@ -139,30 +141,32 @@ class Examples_model extends MY_Model {
      * @param  string  the new password confirmed
      * @param  string  the user ID
      * @param  string  the password recovery code
+     * @param mixed $password
+     * @param mixed $password2
+     * @param mixed $user_id
+     * @param mixed $recovery_code
      */
-    protected function _change_password( $password, $password2, $user_id, $recovery_code )
+    protected function _change_password($password, $password2, $user_id, $recovery_code)
     {
         // User ID check
-        if( isset( $user_id ) && $user_id !== FALSE )
-        {
-            $query = $this->db->select( 'user_id' )
-                ->from( $this->db_table('user_table') )
-                ->where( 'user_id', $user_id )
-                ->where( 'passwd_recovery_code', $recovery_code )
+        if (isset($user_id) && $user_id !== false) {
+            $query = $this->db->select('user_id')
+                ->from($this->db_table('user_table'))
+                ->where('user_id', $user_id)
+                ->where('passwd_recovery_code', $recovery_code)
                 ->get();
 
             // If above query indicates a match, change the password
-            if( $query->num_rows() == 1 )
-            {
+            if ($query->num_rows() == 1) {
                 $user_data = $query->row();
 
-                $this->db->where( 'user_id', $user_data->user_id )
+                $this->db->where('user_id', $user_data->user_id)
                     ->update(
                         $this->db_table('user_table'),
                         [
-                            'passwd' => $this->authentication->hash_passwd( $password ),
-                            'passwd_recovery_code' => NULL,
-                            'passwd_recovery_date' => NULL
+                            'passwd' => $this->authentication->hash_passwd($password),
+                            'passwd_recovery_code' => null,
+                            'passwd_recovery_date' => null,
                         ]
                     );
             }
@@ -179,14 +183,13 @@ class Examples_model extends MY_Model {
     public function get_unused_id()
     {
         // Create a random user id between 1200 and 4294967295
-        $random_unique_int = 2147483648 + mt_rand( -2147482448, 2147483647 );
+        $random_unique_int = 2147483648 + mt_rand(-2147482448, 2147483647);
 
         // Make sure the random user_id isn't already in use
-        $query = $this->db->where( 'user_id', $random_unique_int )
-            ->get_where( $this->db_table('user_table') );
+        $query = $this->db->where('user_id', $random_unique_int)
+            ->get_where($this->db_table('user_table'));
 
-        if( $query->num_rows() > 0 )
-        {
+        if ($query->num_rows() > 0) {
             $query->free_result();
 
             // If the random user_id is already in use, try again
@@ -197,7 +200,6 @@ class Examples_model extends MY_Model {
     }
 
     // --------------------------------------------------------------
-
 }
 
 /* End of file Examples_model.php */

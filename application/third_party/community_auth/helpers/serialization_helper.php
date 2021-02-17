@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Community Auth - Common Functions Helper
@@ -23,36 +23,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @param mixed $data Value to check to see if was serialized.
  * @return bool False if not serialized and true if it was.
  */
-if( ! function_exists('is_serialized') )
-{
-    function is_serialized( $data ) {
+if (! function_exists('is_serialized')) {
+    function is_serialized($data)
+    {
         // if it isn't a string, it isn't serialized
-        if ( ! is_string( $data ) )
+        if (! is_string($data)) {
             return false;
-        $data = trim( $data );
-         if ( 'N;' == $data )
-            return true;
-        $length = strlen( $data );
-        if ( $length < 4 )
-            return false;
-        if ( ':' !== $data[1] )
-            return false;
-        $lastc = $data[$length-1];
-        if ( ';' !== $lastc && '}' !== $lastc )
-            return false;
-        $token = $data[0];
-        switch ( $token ) {
-            case 's' :
-                if ( '"' !== $data[$length-2] )
-                    return false;
-            case 'a' :
-            case 'O' :
-                return (bool) preg_match( "/^{$token}:[0-9]+:/s", $data );
-            case 'b' :
-            case 'i' :
-            case 'd' :
-                return (bool) preg_match( "/^{$token}:[0-9.E-]+;\$/", $data );
         }
+        $data = trim($data);
+        if ('N;' == $data) {
+            return true;
+        }
+        $length = strlen($data);
+        if ($length < 4) {
+            return false;
+        }
+        if (':' !== $data[1]) {
+            return false;
+        }
+        $lastc = $data[$length - 1];
+        if (';' !== $lastc && '}' !== $lastc) {
+            return false;
+        }
+        $token = $data[0];
+        switch ($token) {
+            case 's':
+                if ('"' !== $data[$length - 2]) {
+                    return false;
+                }
+                    // no break
+            case 'a':
+            case 'O':
+                return (bool)preg_match("/^{$token}:[0-9]+:/s", $data);
+            case 'b':
+            case 'i':
+            case 'd':
+                return (bool)preg_match("/^{$token}:[0-9.E-]+;\$/", $data);
+        }
+
         return false;
     }
 }
@@ -61,28 +69,21 @@ if( ! function_exists('is_serialized') )
 
 /**
  * Serialize some data.
- * 
+ *
  * @param mixed Random variable, array, object, etc.
  * @return string The serialized data.
  */
-if( ! function_exists('serialize_data') )
-{
+if (! function_exists('serialize_data')) {
     function serialize_data($data)
     {
-        if (is_array($data))
-        {
-            foreach ($data as $key => $val)
-            {
-                if (is_string($val))
-                {
+        if (is_array($data)) {
+            foreach ($data as $key => $val) {
+                if (is_string($val)) {
                     $data[$key] = str_replace('\\', '{{slash}}', $val);
                 }
             }
-        }
-        else
-        {
-            if (is_string($data))
-            {
+        } else {
+            if (is_string($data)) {
                 $data = str_replace('\\', '{{slash}}', $data);
             }
         }
@@ -95,25 +96,20 @@ if( ! function_exists('serialize_data') )
 
 /**
  * Unserialize some data.
- * 
+ *
  * @param string The serialized data.
- * @return mixed Whatever was unserialized, or whatever was passed to 
+ * @return mixed Whatever was unserialized, or whatever was passed to
  *               this function if it was not serialized.
  */
-if( ! function_exists('unserialize_data') )
-{
+if (! function_exists('unserialize_data')) {
     function unserialize_data($data)
     {
-        if( is_serialized($data) )
-        {
+        if (is_serialized($data)) {
             $data = unserialize(stripslashes($data));
 
-            if (is_array($data))
-            {
-                foreach ($data as $key => $val)
-                {
-                    if (is_string($val))
-                    {
+            if (is_array($data)) {
+                foreach ($data as $key => $val) {
+                    if (is_string($val)) {
                         $data[$key] = str_replace('{{slash}}', '\\', $val);
                     }
                 }
