@@ -36,11 +36,24 @@
         ],
         "ci-lint": [
             "./vendor/bin/php-cs-fixer fix --config=.php_cs -v --dry-run --stop-on-violation --using-cache=no"
+        ],
+        "migrate": [
+            "cd ./public && php index.php migrations migrate"
         ]
     },
     "config": {
         "platform": {
             "php": "7.4"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\" : "application"
+        }
+    },
+    "autoload-dev": {
+        "psr-4":{
+            "App\\Tests\\": "application/tests"
         }
     }
 }

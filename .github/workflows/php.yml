@@ -43,11 +43,25 @@ jobs:
               if: steps.composer-cache.outputs.cache-hit != 'true'
               run: composer install --prefer-dist --no-progress --no-suggest
 
-            - name: Create blank env file # until we need a database
-              run: cp .env.example .env
+            - name: Redump autoloader
+              run: composer dump-autoload
+
+            - name: Create sqlite3 database
+              run: touch ./public/db.sqlite
+
+            - name: Create .env file
+              run: |
+                touch .env
+                echo DB_DATABASE=db.sqlite >> .env
+                echo DB_DRIVER=sqlite3 >> .env
+                echo MIGRATIONS_ENABLED=true >> .env
+                cat .env
 
             - name: Run linter
               run: composer run-script ci-lint
+
+            - name: Run migrations
+              run: composer run-script migrate
 
             - name: Run test suite
               run: composer run-script test

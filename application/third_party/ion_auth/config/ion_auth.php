@@ -156,7 +156,7 @@ $config['recheck_timer'] = 0;                   /* The number of seconds after w
  |
  | Please customize
  */
-$config['session_hash'] = '6583d6c4f205998ecacc9f51b68a2a2e44ea0006';
+$config['session_hash'] = '211BF08CA557DE46E03476B7E480A4AF4D9CF4D4';
 
 /*
  | -------------------------------------------------------------------------

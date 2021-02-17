@@ -1,4 +1,6 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
 /**
  * Part of CodeIgniter Simple and Secure Twig
  *
@@ -7,13 +9,11 @@
  * @copyright  2015 Kenji Suzuki
  * @link       https://github.com/kenjis/codeigniter-ss-twig
  */
-defined('BASEPATH') or exit('No direct script access allowed');
 
-// If you don't use Composer, uncomment below
-/*
-require_once APPPATH . 'third_party/Twig-1.xx.x/lib/Twig/Autoloader.php';
-Twig_Autoloader::register();
-*/
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
+use Twig\TwigFunction;
 
 class Twig
 {
@@ -32,7 +32,7 @@ class Twig
      * @var array Functions to add to Twig
      */
     private $functions_asis = [
-        'base_url', 'site_url', 'lang',
+        'base_url', 'site_url',
     ];
 
     /**
@@ -40,9 +40,7 @@ class Twig
      * @see http://twig.sensiolabs.org/doc/advanced.html#automatic-escaping
      */
     private $functions_safe = [
-        'form_open', 'form_close', 'form_error', 'form_hidden', 'set_value', 'lang',
-//        'form_open_multipart', 'form_upload', 'form_submit', 'form_dropdown',
-//        'set_radio', 'set_select', 'set_checkbox',
+        'lang',
     ];
 
     /**
@@ -60,7 +58,7 @@ class Twig
      */
     private $loader;
 
-    public function __construct($params = [])
+    public function __construct(array $params = [])
     {
         if (isset($params['functions'])) {
             $this->functions_asis =
@@ -94,13 +92,13 @@ class Twig
         $this->config = array_merge($this->config, $params);
     }
 
-    protected function resetTwig()
+    protected function resetTwig(): void
     {
         $this->twig = null;
         $this->createTwig();
     }
 
-    protected function createTwig()
+    protected function createTwig(): void
     {
         // $this->twig is singleton
         if ($this->twig !== null) {
@@ -108,19 +106,19 @@ class Twig
         }
 
         if ($this->loader === null) {
-            $this->loader = new \Twig_Loader_Filesystem($this->paths);
+            $this->loader = new Twig_Loader_Filesystem($this->paths);
         }
 
-        $twig = new \Twig_Environment($this->loader, $this->config);
+        $twig = new Twig_Environment($this->loader, $this->config);
 
         if ($this->config['debug']) {
-            $twig->addExtension(new \Twig_Extension_Debug());
+            $twig->addExtension(new Twig_Extension_Debug());
         }
 
         $this->twig = $twig;
     }
 
-    protected function setLoader($loader)
+    protected function setLoader($loader): void
     {
         $this->loader = $loader;
     }
@@ -128,10 +126,10 @@ class Twig
     /**
      * Registers a Global
      *
-     * @param string $name  The global name
-     * @param mixed  $value The global value
+     * @param string $name The global name
+     * @param mixed $value The global value
      */
-    public function addGlobal($name, $value)
+    public function addGlobal(string $name, $value): void
     {
         $this->createTwig();
         $this->twig->addGlobal($name, $value);
@@ -140,10 +138,10 @@ class Twig
     /**
      * Renders Twig Template and Set Output
      *
-     * @param string $view   Template filename without `.twig`
-     * @param array  $params Array of parameters to pass to the template
+     * @param string $view Template filename without `.twig`
+     * @param array $params Array of parameters to pass to the template
      */
-    public function display($view, $params = [])
+    public function display(string $view, array $params = []): void
     {
         $CI = & get_instance();
         $CI->output->set_output($this->render($view, $params));
@@ -152,11 +150,11 @@ class Twig
     /**
      * Renders Twig Template and Returns as String
      *
-     * @param string $view   Template filename without `.twig`
-     * @param array  $params Array of parameters to pass to the template
+     * @param string $view Template filename without `.twig`
+     * @param array $params Array of parameters to pass to the template
      * @return string
      */
-    public function render($view, $params = [])
+    public function render(string $view, array $params = []): string
     {
         $this->createTwig();
         // We call addFunctions() here, because we must call addFunctions()
@@ -165,10 +163,16 @@ class Twig
 
         $view = $view . '.twig';
 
-        return $this->twig->render($view, $params);
+        try {
+            return $this->twig->render($view, $params);
+        } catch (LoaderError | SyntaxError | RuntimeError $e) {
+            show_error('Twig has encountered an error.');
+        }
+
+        return '';
     }
 
-    protected function addFunctions()
+    protected function addFunctions(): void
     {
         // Runs only once
         if ($this->functions_added) {
@@ -179,7 +183,7 @@ class Twig
         foreach ($this->functions_asis as $function) {
             if (function_exists($function)) {
                 $this->twig->addFunction(
-                    new \Twig_SimpleFunction(
+                    new TwigFunction(
                         $function,
                         $function
                     )
@@ -191,7 +195,7 @@ class Twig
         foreach ($this->functions_safe as $function) {
             if (function_exists($function)) {
                 $this->twig->addFunction(
-                    new \Twig_SimpleFunction(
+                    new TwigFunction(
                         $function,
                         $function,
                         ['is_safe' => ['html']]
@@ -203,7 +207,7 @@ class Twig
         // customized functions
         if (function_exists('anchor')) {
             $this->twig->addFunction(
-                new \Twig_SimpleFunction(
+                new TwigFunction(
                     'anchor',
                     [$this, 'safe_anchor'],
                     ['is_safe' => ['html']]
@@ -220,7 +224,7 @@ class Twig
      * @param array  $attributes [changed] only array is acceptable
      * @return string
      */
-    public function safe_anchor($uri = '', $title = '', $attributes = [])
+    public function safe_anchor(string $uri = '', string $title = '', array $attributes = []): string
     {
         $uri = html_escape($uri);
         $title = html_escape($title);
@@ -234,9 +238,9 @@ class Twig
     }
 
     /**
-     * @return \Twig_Environment
+     * @return Twig_Environment
      */
-    public function getTwig()
+    public function getTwig(): Twig_Environment
     {
         $this->createTwig();
 

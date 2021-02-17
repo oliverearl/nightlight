@@ -18,12 +18,8 @@
     </testsuites>
     <filter>
         <whitelist>
-            <directory suffix=".php">../controllers</directory>
-            <directory suffix=".php">../models</directory>
-            <directory suffix=".php">../views</directory>
-            <directory suffix=".php">../libraries</directory>
-            <directory suffix=".php">../helpers</directory>
-            <directory suffix=".php">../hooks</directory>
+            <directory suffix=".php">../Feature</directory>
+            <directory suffix=".php">../Unit</directory>
         </whitelist>
     </filter>
 </phpunit>
