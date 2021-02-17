@@ -42,5 +42,15 @@
         "platform": {
             "php": "7.4"
         }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\" : "application"
+        }
+    },
+    "autoload-dev": {
+        "psr-4":{
+            "App\\Tests\\": "application/tests"
+        }
     }
 }

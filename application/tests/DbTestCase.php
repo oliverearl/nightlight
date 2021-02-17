@@ -1,5 +1,10 @@
 <?php
 
-class DbTestCase extends CIPHPUnitTestDbTestCase
+namespace App\Tests;
+
+use CIPHPUnitTestDbTestCase;
+
+abstract class DbTestCase extends CIPHPUnitTestDbTestCase
 {
+    use MockLogin;
 }

@@ -66,3 +66,13 @@ $lang['homepage']['box-three-button'] = 'E-bostiwch Ni';
 $lang['homepage']['feedback-title'] = 'Ydych chi wedi siarad â ni yn ddiweddar? Unrhyw beth y gallwn ei wneud yn well?';
 $lang['homepage']['feedback-content'] = 'Rydym bob amser yn ceisio gwella ein hunain a byddem wrth ein bodd yn cael eich adborth dienw.';
 $lang['homepage']['feedback-button'] = 'Rhowch Adborth';
+
+/**
+ * Login
+ */
+$lang['login']['title'] = 'Mewngofnodi';
+$lang['login']['heading'] = 'Mewngofnodi i Nightlight';
+$lang['login']['login-button'] = 'Mewngofnodi';
+$lang['login']['email'] = 'Cyfeiriad ebost';
+$lang['login']['password'] = 'Cyfrinair';
+$lang['login']['return'] = "Dychwelwch i'r Wefan";

@@ -61,3 +61,13 @@ $lang['homepage']['box-three-button'] = 'Email Us';
 $lang['homepage']['feedback-title'] = 'Have you spoken to us recently? Anything we can do better?';
 $lang['homepage']['feedback-content'] = "We're always looking to improve ourselves and would love to get your anonymous feedback.";
 $lang['homepage']['feedback-button'] = 'Give Feedback';
+
+/**
+ * Login
+ */
+$lang['login']['title'] = 'Login';
+$lang['login']['heading'] = 'Login to Nightlight';
+$lang['login']['login-button'] = 'Login';
+$lang['login']['email'] = 'Email Address';
+$lang['login']['password'] = 'Password';
+$lang['login']['return'] = 'Return to Website';
