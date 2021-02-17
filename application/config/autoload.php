@@ -94,6 +94,7 @@ $autoload['drivers'] = [];
 */
 $autoload['helper'] = [
     'general',
+    'language',
     'url',
 ];
 
