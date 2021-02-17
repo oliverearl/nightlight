@@ -43,6 +43,9 @@ jobs:
               if: steps.composer-cache.outputs.cache-hit != 'true'
               run: composer install --prefer-dist --no-progress --no-suggest
 
+            - name: Redump autoloader
+              run: composer dump-autoload
+
             - name: Create sqlite3 database
               run: touch ./public/db.sqlite
 
