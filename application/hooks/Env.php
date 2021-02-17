@@ -3,10 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Env
 {
-    /**
-     * Env constructor.
-     */
-    public function __construct()
+    public function hook(): void
     {
         $dotenv = Dotenv\Dotenv::createUnsafeImmutable(FCPATH . '../');
 

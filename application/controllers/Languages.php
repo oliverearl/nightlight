@@ -1,24 +1,24 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Language extends MY_Controller
+class Languages extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function en()
+    public function en(): void
     {
         $this->switchLanguage('english');
     }
 
-    public function cy()
+    public function cy(): void
     {
         $this->switchLanguage('welsh');
     }
 
-    protected function switchLanguage($language = '')
+    protected function switchLanguage(string $language = ''): void
     {
         $language = ($language !== '') ? $language : 'english';
 

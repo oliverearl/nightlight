@@ -290,6 +290,7 @@ class CI_Migration {
             }
             elseif ( ! is_callable(array($class, $method)))
             {
+                echo $class, $method;
                 $this->_error_string = sprintf($this->lang->line('migration_missing_'.$method.'_method'), $class);
                 return FALSE;
             }
