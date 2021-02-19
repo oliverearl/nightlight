@@ -99,3 +99,22 @@ $lang['what-is-nightline'] = [
     'important-p6' => 'For more information on Nightline itself, please consult the <a href="http://www.nightline.ac.uk" target="_blank">Nightline Association website.</a>',
     'important-p7' => '<em>Questions? Please check our <a href="/faqs">FAQ page.</a></em>',
 ];
+
+$lang['call'] = [
+    'title' => 'Call Us',
+    'heading' => 'The confidential listening service',
+    'subheading' => "Need to talk? We're here to listen.",
+    'p1' => "We're not able to give out our phone number online*, but there are places you can find our number:",
+    'li1' => 'On the back of your Aberystwyth University student card',
+    'li2' => "On bilingual posters throughout Aberystwyth University campuses and Students' Union building",
+    'li3' => '<a href="http://www.abersu.co.uk/volunteering/nightline/" target="_blank">The Students\' Union website</a> <em>(requires you to login with your Aber account)</em>',
+    'li4' => 'At the Student Wellness Centre on Penglais campus',
+    'p2' => 'Calls are <strong>absolutely not recorded</strong> and are charged at your standard network rate for calls to UK landlines.',
+    'small' => 'Due to Nightline being a service to be used by students, the number for Nightline cannot be provided to the wider public.',
+    'english-notice-heading' => 'Unfortunately, we currently only operate in English.',
+    'english-notice-content' => 'For more information on provisions in Welsh and other languages, check our <a href="/faqs">FAQs page.</a>',
+    'aber-card-example' => 'Aber Card Example',
+    'misplaced' => 'Misplaced our number?',
+    'misplaced2' => 'Our trained volunteers would be happy to talk to you via instant messaging.',
+    'chat-button' => 'Send us an IM',
+];
