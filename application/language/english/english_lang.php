@@ -35,7 +35,7 @@ $lang['nav'] = [
 /**
  * Footer
  */
-$lang['footer']['content'] = 'Copyright &copy; Aberystwyth Nightline. We are a GPG accredited affiliation of the <a href="https://www.nightline.ac.uk" "target="_blank">Nightline Association</a>.';
+$lang['footer']['content'] = 'Copyright &copy; Aberystwyth Nightline. We are a GPG accredited affiliation of the <a href="https://www.nightline.ac.uk" target="_blank">Nightline Association</a>.';
 $lang['footer']['login'] = 'Volunteer Login';
 
 /**
@@ -75,4 +75,27 @@ $lang['login'] = [
     'email' => 'Email Address',
     'password' => 'Password',
     'return' => 'Return to Website',
+];
+
+$lang['what-is-nightline'] = [
+    'title' => 'What is Nightline?',
+    'heading' => 'What is Nightline?',
+    'history-heading' => 'History of Nightline',
+    'history-p1' => 'Nightline was founded in May 1970 at Essex University by a local chaplin and ex-director of Colchester Samaritans, with the intention of helping to prevent student suicide.',
+    'history-p2' => 'A small group of students were trained to give fellow students someone to talk to. A telephone was set up in an empty campus bedroom, and thus Nightline began.',
+    'important-heading' => 'Why Nightline is important',
+    'important-p1' => 'University is often a stressful time. Individuals might be living away from home for the first time and can face many challenges along the way. These might include:',
+    'important-li1' => 'Academic problems',
+    'important-li2' => 'Trouble making friends and fitting in',
+    'important-li3' => 'Paying bills',
+    'important-li4' => 'Living with strangers',
+    'important-li5' => 'Homesickness',
+    'important-p2' => 'Many people feel out of their comfort zone; adding to stress and anxiety. Studies suggest that <strong>20-25%</strong> of university students show raised levels of psychological distress, slightly higher than the figure reported for the general public. For some students, these feelings may lift after a period of time, but for others they may lead to feelings of hopelessness and depression.',
+    'important-p3' => 'This often leads to insomnia, lack of energy, difficulty concentrating and staying motivated. Such symptoms affect everyday living and often academic performance.',
+    'figure-alt' => 'Cycle of depression at university',
+    'figure-caption' => 'A visualisation of how anxiety and stress can spiral and intensify each other.',
+    'important-p4' => 'Studies show that <strong>students are more likely to confide in other students.</strong> But students have typically been poor at recognising the presence and severity of psychological symptoms.',
+    'important-p5' => 'This is where Nightline comes in to help break the cycle.',
+    'important-p6' => 'For more information on Nightline itself, please consult the <a href="http://www.nightline.ac.uk" target="_blank">Nightline Association website.</a>',
+    'important-p7' => '<em>Questions? Please check our <a href="/faqs">FAQ page.</a></em>',
 ];
