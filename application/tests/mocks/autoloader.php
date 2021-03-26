@@ -1,17 +1,12 @@
 <?php
 
-// This is from: https://github.com/bcit-ci/CodeIgniter/blob/develop/tests/mocks/autoloader.php
-
-// This autoloader provide convinient way to working with mock object
-// make the test looks natural. This autoloader support cascade file loading as well
-// within mocks directory.
-//
-// Prototype :
-//
-// $mock_table = new Mock_Libraries_Table();             // Will load ./mocks/libraries/table.php
-// $mock_database_driver = new Mock_Database_Driver();    // Will load ./mocks/database/driver.php
-// and so on...
-function autoload($class)
+/**
+ * This is from: https://github.com/bcit-ci/CodeIgniter/blob/develop/tests/mocks/autoloader.php
+ *
+ * @param $class
+ * @return bool
+ */
+function autoload($class): bool
 {
     $dir = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR;
 
@@ -50,10 +45,10 @@ function autoload($class)
         'Profiler',
         'Table',
         'Trackback',
-           'Typography',
+       'Typography',
         'Unit_test',
         'Upload',
-           'User_agent',
+        'User_agent',
         'Xmlrpc',
         'Zip',
     ];

@@ -56,10 +56,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'pages';
 $route['404_override'] = '';
 
+$route['home'] = 'pages/homepage';
+$route['call'] = 'pages/call';
+$route['what-is-nightline'] = 'pages/what_is_nightline';
+
 $route['login'] = 'auth/login';
 $route['dashboard'] = 'dashboard/index';
 
 $route['cy'] = 'languages/cy';
 $route['en'] = 'languages/en';
 
-$route['translate_uri_dashes'] = false;
+$route['translate_uri_dashes'] = true;

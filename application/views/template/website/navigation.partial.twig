@@ -8,71 +8,87 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
-                <img id="brand-image" src="img/logo.png" alt="Aberystwyth Nightline">
+            <a class="navbar-brand" href="{{ base_url }}/home">
+                <img id="brand-image" src="{{ base_url }}/img/logo.png" alt="Aberystwyth Nightline">
             </a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li id="home">
-                    <a href="#">{{ lang('nav')['home'] }}</a>
+                    <a href="{{ base_url }}/home">{{ lang('nav')['home'] }}</a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ lang('nav')['talk'] }} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        {{ lang('nav')['talk'] }} <b class="caret"></b>
+                    </a>
                     <ul class="dropdown-menu">
                         <li id="call">
-                            <a href="#">{{ lang('nav')['call'] }}</a>
+                            <a href="{{ base_url }}/call">{{ lang('nav')['call'] }}</a>
                         </li>
                         <li id="chat">
-                            <a href="#">{{ lang('nav')['chat'] }}</a>
+                            <a href="{{ base_url }}/chat">{{ lang('nav')['chat'] }}</a>
                         </li>
                         <li id="email">
-                            <a href="#">{{ lang('nav')['email'] }}</a>
+                            <a href="{{ base_url }}/email">{{ lang('nav')['email'] }}</a>
                         </li>
                     </ul>
                 </li>
                 <li id="volunteering">
-                    <a href="#">{{ lang('nav')['volunteering'] }}</a>
+                    <a href="{{ base_url }}/volunteering">{{ lang('nav')['volunteering'] }}</a>
                 </li>
                 <li id="faqs">
-                    <a href="#">{{ lang('nav')['faqs'] }}</a>
+                    <a href="{{ base_url }}/faqs">{{ lang('nav')['faqs'] }}</a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ lang('nav')['about'] }} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        {{ lang('nav')['about'] }} <b class="caret"></b>
+                    </a>
                     <ul class="dropdown-menu">
                         <li id="about">
-                            <a href="#">{{ lang('nav')['what-is-nightline'] }}</a>
+                            <a href="{{ base_url }}/what-is-nightline">{{ lang('nav')['what-is-nightline'] }}</a>
                         <li id="principles">
-                            <a href="#">{{ lang('nav')['principles'] }}</a>
+                            <a href="{{ base_url }}/principles">{{ lang('nav')['principles'] }}</a>
                         </li>
                         <li id="confidentiality-policy">
-                            <a href="#" target="_blank">{{ lang('nav')['confidentiality'] }}</a>
+                            <a href="{{ base_url }}/confidentiality-policy" target="_blank">
+                                {{ lang('nav')['confidentiality'] }}
+                            </a>
                         </li>
                         <li id="testimonials">
-                            <a href="#">{{ lang('nav')['testimonials'] }}</a>
+                            <a href="{{ base_url }}/testimonials">{{ lang('nav')['testimonials'] }}</a>
                         </li>
                         <li id="feedback">
-                            <a href="#">{{ lang('nav')['contact'] }}</a>
+                            <a href="{{ base_url }}/feedback">{{ lang('nav')['contact'] }}</a>
                         </li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ lang('nav')['social'] }} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        {{ lang('nav')['social'] }} <b class="caret"></b>
+                    </a>
                     <ul class="dropdown-menu">
                         <li id="facebook">
-                            <a href="https://www.facebook.com/abernightline" target="_blank">{{ lang('nav')['facebook'] }}</a>
+                            <a href="https://www.facebook.com/abernightline" target="_blank">
+                                {{ lang('nav')['facebook'] }}
+                            </a>
                         </li>
                         <li id="twitter">
-                            <a href="https://www.twitter.com/abernightline" target="_blank">{{ lang('nav')['twitter'] }}</a>
+                            <a href="https://www.twitter.com/abernightline" target="_blank">
+                                {{ lang('nav')['twitter'] }}
+                            </a>
                         </li>
                         <li id="nigelnightline">
-                            <a href="https://www.facebook.com/neptune.nightline.1" target="_blank">{{ lang('nav')['neptune'] }}</a>
+                            <a href="https://www.facebook.com/neptune.nightline.1" target="_blank">
+                                {{ lang('nav')['neptune'] }}
+                            </a>
                         </li>
                     </ul>
                 </li>
                 <li id="cymraeg">
-                    <a href="{{ base_url }}/{{ lang('nav')['other-language-link'] }}">{{ lang('nav')['other-language'] }}</a>
+                    <a href="{{ base_url }}/{{ lang('nav')['other-language-link'] }}">
+                        {{ lang('nav')['other-language'] }}
+                    </a>
                 </li>
             </ul>
         </div>

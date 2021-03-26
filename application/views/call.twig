@@ -1,0 +1,53 @@
+{% extends 'template/website/website.partial.twig' %}
+{% block title %}
+    {{ lang('call')['title'] }}
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">{{ lang('call')['heading'] }}</h1>
+            </div>
+            <div class="col-md-8">
+                <h2>{{ lang('call')['subheading'] }}</h2>
+                <p>{{ lang('call')['p1'] }}</p>
+                <ul>
+                    <li>{{ lang('call')['li1'] }}</li>
+                    <li>{{ lang('call')['li2'] }}</li>
+                    <li>{{ lang('call')['li3'] | raw}}</li>
+                    <li>{{ lang('call')['li4'] }}</li>
+                </ul>
+                <p>{{ lang('call')['p2'] | raw}}</p>
+                <small>{{ lang('call')['small'] }}</small>
+                <h4>{{ lang('call')['english-notice-heading'] }}</h4>
+                <p>{{ lang('call')['english-notice-content'] | raw}}</p>
+            </div>
+            <div class="col-md-4">
+                <img class="img-responsive"
+                     src="{{ base_url }}/img/abercard.jpg"
+                     alt="{{ lang('call')['aber-card-example'] }}"
+                >
+            </div>
+        </div>
+
+        <div class="well">
+            <div class="row">
+                <div class="col-md-8">
+                    <p><strong>{{ lang('call')['misplaced'] }}</strong></p>
+                    <p>{{ lang('call')['misplaced2'] }}</p>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-lg btn-default btn-block" href="{{ base_url }}/chat">
+                        {{ lang('call')['chat-button'] }}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <ol class="breadcrumb">
+            <li><a href="{{ base_url }}/home">{{ lang('nav')['home'] }}</a></li>
+            <li class="active">{{ lang('nav')['call'] }}</li>
+        </ol>
+    </main>
+{% endblock %}

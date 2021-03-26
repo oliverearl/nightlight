@@ -18,6 +18,16 @@ class Pages extends CI_Controller
         $this->twig->display('homepage');
     }
 
+    public function what_is_nightline(): void
+    {
+        $this->twig->display('what-is-nightline');
+    }
+
+    public function call(): void
+    {
+        $this->twig->display('call');
+    }
+
     public function not_found(): void
     {
         // TODO: 404 error-handling
