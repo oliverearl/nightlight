@@ -18,7 +18,6 @@ class Mock_Libraries_Email
 
     public function initialize(): void
     {
-        //
     }
 
     /**
@@ -52,7 +51,6 @@ class Mock_Libraries_Email
     {
         $this->data['subject'] = $subject;
     }
-
 
     /**
      * @param string $message
