@@ -83,6 +83,9 @@ $lang['login'] = [
     'return' => "Dychwelwch i'r Wefan",
 ];
 
+/**
+ * What is Nightline
+ */
 $lang['what-is-nightline'] = [
     'title' => 'Beth yw Nightline?',
     'heading' => 'Beth yw Nightline?',
@@ -102,10 +105,13 @@ $lang['what-is-nightline'] = [
     'figure-caption' => 'Delwedd o sut y gall pryder a straen droelli a dwysáu ei gilydd.',
     'important-p4' => 'Mae astudiaethau’n dangos bod <strong>myfyrwyr yn fwy tebygol o ymddiried mewn myfyrwyr eraill.</strong> Ond yn nodweddiadol mae myfyrwyr wedi bod yn wael wrth gydnabod presenoldeb a difrifoldeb symptomau seicolegol.',
     'important-p5' => "Dyma lle mae Nightline yn dod i mewn i helpu i dorri'r cylch.",
-    'important-p6' => 'I gael mwy o wybodaeth am Nightline ei hun, edrychwch ar wefan <a href="http://www.nightline.ac.uk" target="_blank"> Nightline Association. </a>',
+    'important-p6' => 'I gael mwy o wybodaeth am Nightline ei hun, edrychwch ar wefan <a href="http://www.nightline.ac.uk" target="_blank"> Nightline Association.</a>',
     'important-p7' => '<em>Cwestiynau? Edrychwch ar ein tudalen Cwestiynau Cyffredin <a href="/faqs">.</a></em>',
 ];
 
+/**
+ * Call Us
+ */
 $lang['call'] = [
     'title' => 'Ffoniwch Ni',
     'heading' => 'Y gwasanaeth gwrando cyfrinachol',
@@ -123,4 +129,35 @@ $lang['call'] = [
     'misplaced' => 'Wedi camosod ein rhif?',
     'misplaced2' => 'Byddai ein gwirfoddolwyr hyfforddedig yn hapus i siarad â chi trwy negeseuon gwib.',
     'chat-button' => 'Gyrrwch IM atom',
+];
+
+/**
+ * Chat Online
+ */
+$lang['chat'] = [
+    'title' => 'Sgwrs Ar-lein',
+    'heading' => 'Sgwrsio â gwirfoddolwyr',
+    'subheading' => 'Sut i ddefnyddio ein gwasanaeth sgwrsio ar-lein:',
+    'instruction1' => "Rhowch enw. Gall hyn fod yn beth bynnag yr ydych ei eisiau. Nid oes rhaid i chi ddefnyddio'ch enw go iawn.",
+    'instruction2' => "Gollyngwch neges atom! P'un a yw hynny'n helo, hi, neu beth bynnag sydd ar eich meddwl. Mae hyn yn eich rhoi drwodd i wirfoddolwr a byddwn yn eich negesu'n ôl.",
+    'instruction3' => 'Sgwrsiwch ni â ni am ddim, mewn cyfrinachedd, ac mewn amser real.',
+    'welsh-subheading' => 'Yn anffodus, dim ond yn Saesneg yr ydym yn gweithredu ar hyn o bryd.',
+    'welsh-content' => 'I gael mwy o wybodaeth am ddarpariaethau mewn Cymraeg neu ieithoedd eraill, edrychwch ar ein Cwestiynau Cyffredin.',
+];
+
+/**
+ * Zoho-specific
+ */
+$lang['zoho'] = [
+    'subheading' => 'Ychydig o faterion yr ydym yn ymwybodol ohonynt ar hyn o bryd:',
+    'point1' => 'Mae rhai fersiynau hŷn o Safari (iOS) yn cael problemau wrth edrych ar y sgwrs. Rydym yn argymell defnyddio porwr gwahanol os gallwch chi.',
+    'point2' => 'Mae angen i ni dderbyn neges gennych i chi gael eich cyflwyno i wirfoddolwr. Gyrrwch helo atom yn gyntaf!',
+];
+
+/**
+ * Mibew-specific
+ */
+$lang['mibew'] = [
+    'subheading' => 'Ar hyn o bryd rydym yn treialu ein system negeseuon gwib newydd.',
+    'point1' => "Os ydych chi'n rhedeg i unrhyw broblemau, rhowch wybod i ni!",
 ];

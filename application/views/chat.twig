@@ -1,0 +1,66 @@
+{% extends 'template/website/website.partial.twig' %}
+{% block title %}
+    {{ lang('chat')['title'] }}
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">{{ lang('chat')['heading'] }}</h1>
+            </div>
+        </div>
+        {% if (chat is same as ('zoho')) %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="iframecontainer">
+                        <iframe src="http://chat.zoho.com/mychat.sas?u=ff4c3beb12be7b9e5547739b0c0e4f1d&amp;chaturl=Aberystwyth%20Nightline1&amp;V=000000-70a9e1-eff4f9-70a9e1-Nightline%20Chat"></iframe>
+                    </div>
+                </div>
+            </div>
+        {% elseif (chat is same as ('mibew')) %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="https://im.aberystwyth.nightline.ac.uk/webim/client.php?locale=en&amp;style=NLA_Theme"
+                       target="_blank"
+                       onclick="if(navigator.userAgent.toLowerCase().indexOf('opera') !== -1 &amp;&amp; window.event.preventDefault) window.event.preventDefault();this.newWindow = window.open('https://im.aberystwyth.nightline.ac.uk/webim/client.php?locale=en&amp;style=NLA_Theme&amp;url='+escape(document.location.href)+'&amp;referrer='+escape(document.referrer), 'webim', 'toolbar=0,scrollbars=0,location=0,status=1,menubar=0,width=640,height=480,resizable=1');this.newWindow.focus();this.newWindow.opener=window;return false;"
+                    >
+                        <img
+                            src="https://im.aberystwyth.nightline.ac.uk/webim/b.php?i=mblue&amp;lang=en"
+                            alt="{{ lang('chat')['title'] }}"
+                        />
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>{{ lang('chat')['subheading'] }}</h3>
+                <ol>
+                    <li>{{ lang('chat')['instruction1'] }}</li>
+                    <li>{{ lang('chat')['instruction2'] }}</li>
+                    <li>{{ lang('chat')['instruction3'] }}</li>
+                </ol>
+                {% if (chat is same as ('zoho')) %}
+                    <h4>{{ lang('zoho')['subheading'] }}</h4>
+                    <ul>
+                        <li>{{ lang('zoho')['point1'] }}</li>
+                        <li>{{ lang('zoho')['point2'] }}</li>
+                    </ul>
+                {% elseif (chat is same as ('mibew')) %}
+                    <h4>{{ lang('mibew')['subheading'] }}</h4>
+                    <p>{{ lang('mibew')['point1'] }}</p>
+                {% endif %}
+                <h4>{{ lang('chat')['welsh-subheading'] }}</h4>
+                <p>{{ lang('chat')['welsh-content'] }}</p>
+            </div>
+        </div>
+
+
+        <ol class="breadcrumb">
+            <li><a href="{{ base_url }}/home">{{ lang('nav')['home'] }}</a></li>
+            <li class="active">{{ lang('nav')['chat'] }}</li>
+        </ol>
+    </main>
+{% endblock %}

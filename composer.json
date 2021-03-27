@@ -19,6 +19,7 @@
         "paragonie/random_compat": "Provides better randomness in PHP 5.x"
     },
     "require-dev": {
+        "larapack/dd": "^1.1",
         "mikey179/vfsstream": "1.1.*",
         "phpunit/phpunit": "5.7.27",
         "kenjis/ci-phpunit-test": "^0.18.0",

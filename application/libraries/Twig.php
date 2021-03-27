@@ -166,7 +166,11 @@ class Twig
         try {
             return $this->twig->render($view, $params);
         } catch (LoaderError | SyntaxError | RuntimeError $e) {
-            show_error('Twig has encountered an error.');
+            if (ENVIRONMENT !== 'production') {
+                show_error($e);
+            } else {
+                show_error('Twig has encountered an error.');
+            }
         }
 
         return '';
