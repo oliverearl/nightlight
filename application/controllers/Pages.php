@@ -28,6 +28,13 @@ class Pages extends CI_Controller
         $this->twig->display('call');
     }
 
+    public function chat(): void
+    {
+        $this->twig->display('chat', [
+            'chat' => $this->config->item('nightlight_chat_system'),
+        ]);
+    }
+
     public function not_found(): void
     {
         // TODO: 404 error-handling

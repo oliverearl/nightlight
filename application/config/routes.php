@@ -58,6 +58,7 @@ $route['404_override'] = '';
 
 $route['home'] = 'pages/homepage';
 $route['call'] = 'pages/call';
+$route['chat'] = 'pages/chat';
 $route['what-is-nightline'] = 'pages/what_is_nightline';
 
 $route['login'] = 'auth/login';
