@@ -77,6 +77,9 @@ $lang['login'] = [
     'return' => 'Return to Website',
 ];
 
+/**
+ * What is Nightline
+ */
 $lang['what-is-nightline'] = [
     'title' => 'What is Nightline?',
     'heading' => 'What is Nightline?',
@@ -100,6 +103,9 @@ $lang['what-is-nightline'] = [
     'important-p7' => '<em>Questions? Please check our <a href="/faqs">FAQ page.</a></em>',
 ];
 
+/**
+ * Call Us
+ */
 $lang['call'] = [
     'title' => 'Call Us',
     'heading' => 'The confidential listening service',
@@ -117,4 +123,35 @@ $lang['call'] = [
     'misplaced' => 'Misplaced our number?',
     'misplaced2' => 'Our trained volunteers would be happy to talk to you via instant messaging.',
     'chat-button' => 'Send us an IM',
+];
+
+/**
+ * Chat Online
+ */
+$lang['chat'] = [
+    'title' => 'Chat Online',
+    'heading' => 'Chat with volunteers',
+    'subheading' => 'How to use our online chat service:',
+    'instruction1' => "Enter a name. This can be whatever you want. You don't have to use your real name.",
+    'instruction2' => "Drop us a message! Whether that's hello, hi, or whatever is on your mind. This puts you through to a volunteer and we'll message you back.",
+    'instruction3' => 'Chat us to us for free, in confidentiality, and in real-time.',
+    'welsh-subheading' => 'Unfortunately, we currently only operate in English.',
+    'welsh-content' => 'For more information on provisions in Welsh or other languages, check our FAQs.',
+];
+
+/**
+ * Zoho-specific
+ */
+$lang['zoho'] = [
+    'subheading' => 'A few issues we are currently aware of:',
+    'point1' => 'Some older versions of Safari (iOS) have problems viewing the chat. We recommend using a different browser if you can.',
+    'point2' => 'We need to receive a message from you for you to be put through to a volunteer. Send us a hello first!',
+];
+
+/**
+ * Mibew-specific
+ */
+$lang['mibew'] = [
+    'subheading' => "We're currently trialling our new instant messaging system.",
+    'point1' => 'If you run into any problems, please let us know!',
 ];
