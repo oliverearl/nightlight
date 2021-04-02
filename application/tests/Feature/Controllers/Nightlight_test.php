@@ -34,5 +34,4 @@ class Nightlight_test extends TestCase
 
         $this->assertContains('https://im.aberystwyth.nightline.ac.uk/webim/client.php', $output);
     }
-
 }
