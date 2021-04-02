@@ -161,3 +161,15 @@ $lang['mibew'] = [
     'subheading' => 'Ar hyn o bryd rydym yn treialu ein system negeseuon gwib newydd.',
     'point1' => "Os ydych chi'n rhedeg i unrhyw broblemau, rhowch wybod i ni!",
 ];
+
+$lang['email'] = [
+    'title' => 'E-bostiwch Ni ',
+    'heading' => "Gwrando e-bost, unrhyw adeg o'r dydd neu'r nos",
+    'subheading' => "Hyd yn oed pan rydyn ni ar gau, rydyn ni'n dal i wrando",
+    'p1' => "Mae Nightline yn rhoi amser a lle i fyfyrwyr drafod beth bynnag sydd ar eu meddwl. Os nad ydych yn teimlo fel siarad, neu os nad yw'r gwasanaeth ar gael, gallwch anfon e-bost atom. Am ddim ac yn gwbl gyfrinachol.",
+    'p2' => 'Ein nod yw ymateb i bob e-bost o fewn 48 awr.',
+    'call-to-email' => 'Anfonwch e-bost atom yn gwbl gyfrinachol ar  <strong><a href="mailto:listening@aberystwyth.nightline.ac.uk" target="_blank">listening@aberystwyth.nightline.ac.uk</a></strong>',
+    'something-else' => 'Angen anfon e-bost atom am rywbeth arall?',
+    'something-else-text' => 'Cyfeiriwch gwynion, ymholiadau busnes, ymholiadau gwirfoddoli i\'n <a href="/feedback">tudalen gyswllt.</a>',
+    'image-alt' => 'Myfyriwr yn teipio ar fysellfwrdd',
+];

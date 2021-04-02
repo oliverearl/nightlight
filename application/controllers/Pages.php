@@ -35,6 +35,11 @@ class Pages extends CI_Controller
         ]);
     }
 
+    public function email(): void
+    {
+        $this->twig->display('email');
+    }
+
     public function not_found(): void
     {
         // TODO: 404 error-handling
