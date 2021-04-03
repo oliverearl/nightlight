@@ -30,9 +30,18 @@ class Pages extends CI_Controller
 
     public function chat(): void
     {
+        if (ENVIRONMENT === 'testing' && $this->input->get('chat_override')) {
+            $this->config->set_item('nightlight_chat_system', $this->input->get('chat_override'));
+        }
+
         $this->twig->display('chat', [
             'chat' => $this->config->item('nightlight_chat_system'),
         ]);
+    }
+
+    public function email(): void
+    {
+        $this->twig->display('email');
     }
 
     public function not_found(): void

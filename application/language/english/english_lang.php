@@ -155,3 +155,15 @@ $lang['mibew'] = [
     'subheading' => "We're currently trialling our new instant messaging system.",
     'point1' => 'If you run into any problems, please let us know!',
 ];
+
+$lang['email'] = [
+    'title' => 'Email Us',
+    'heading' => 'Email listening, any time of day or night',
+    'subheading' => "Even when we're closed, we're still listening",
+    'p1' => "Nightline gives students time and space to talk through whatever is on their mind. If you don't feel like talking, or if the service is unavailable, you can email us. Free and completely confidential.",
+    'p2' => 'We aim to respond to all emails within 48 hours.',
+    'call-to-email' => 'Send us an email in complete confidence on <strong><a href="mailto:listening@aberystwyth.nightline.ac.uk" target="_blank">listening@aberystwyth.nightline.ac.uk</a></strong>',
+    'something-else' => 'Need to email us about something else?',
+    'something-else-text' => 'Please direct complaints, business queries, volunteering enquiries to our <a href="/feedback">contact page.</a>',
+    'image-alt' => 'Student typing on keyboard',
+];

@@ -53,7 +53,7 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-// This `if` statemant is needed for @runInSeparateProcess
+// This `if` statement is needed for @runInSeparateProcess
 if (! defined('ENVIRONMENT')) {
     define('ENVIRONMENT', 'testing');
 }

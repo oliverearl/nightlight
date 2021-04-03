@@ -55,6 +55,7 @@ jobs:
                 echo DB_DATABASE=db.sqlite >> .env
                 echo DB_DRIVER=sqlite3 >> .env
                 echo MIGRATIONS_ENABLED=true >> .env
+                echo NIGHTLIGHT_CHAT_SYSTEM=mibew >> .env
                 cat .env
 
             - name: Run linter
