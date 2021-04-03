@@ -17,11 +17,7 @@ class Nightlight_test extends TestCase
 
     public function test_nightlight_chat_system_being_set_to_zoho_enables_the_legacy_instant_messaging_system(): void
     {
-        $this->request('GET', '/testing/chat/legacy');
-
-        $this->assertResponseCode(204);
-
-        $output = $this->request('GET', '/chat');
+        $output = $this->request('GET', '/chat?chat_override=zoho');
 
         $this->assertResponseCode(200);
 
@@ -30,13 +26,7 @@ class Nightlight_test extends TestCase
 
     public function test_nightlight_chat_system_being_set_to_mibew_enables_the_standard_instant_messaging_system(): void
     {
-        $this->request('GET', '/testing/chat/nla');
-
-        $this->assertResponseCode(204);
-
-        $output = $this->request('GET', '/chat');
-
-        $this->assertContains('trialling our new instant messaging system', $output);
+        $output = $this->request('GET', '/chat?chat_override=mibew');
 
         $this->assertResponseCode(200);
 

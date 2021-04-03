@@ -65,9 +65,6 @@ $route['what-is-nightline'] = 'pages/what_is_nightline';
 $route['login'] = 'auth/login';
 $route['dashboard'] = 'dashboard/index';
 
-$route['testing/chat/nla'] = 'testing/chat_nla';
-$route['testing/chat/legacy'] = 'testing/chat_legacy';
-
 $route['cy'] = 'languages/cy';
 $route['en'] = 'languages/en';
 
