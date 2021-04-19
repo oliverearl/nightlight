@@ -61,6 +61,7 @@ $route['call'] = 'pages/call';
 $route['chat'] = 'pages/chat';
 $route['email'] = 'pages/email';
 $route['what-is-nightline'] = 'pages/what_is_nightline';
+$route['principles'] = 'pages/our-principles';
 
 $route['login'] = 'auth/login';
 $route['dashboard'] = 'dashboard/index';

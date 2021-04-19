@@ -44,6 +44,11 @@ class Pages extends CI_Controller
         $this->twig->display('email');
     }
 
+    public function our_principles(): void
+    {
+        $this->twig->display('principles');
+    }
+
     public function not_found(): void
     {
         // TODO: 404 error-handling

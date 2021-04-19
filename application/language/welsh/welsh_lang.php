@@ -173,3 +173,22 @@ $lang['email'] = [
     'something-else-text' => 'Cyfeiriwch gwynion, ymholiadau busnes, ymholiadau gwirfoddoli i\'n <a href="/feedback">tudalen gyswllt.</a>',
     'image-alt' => 'Myfyriwr yn teipio ar fysellfwrdd',
 ];
+
+$lang['principles'] = [
+    'title' => 'Ein Hegwyddorion',
+    'heading' => 'Ein Hegwyddorion',
+    'confidentiality' => 'Cyfrinachedd',
+    'anonymity' => 'Dienw',
+    'non-assuming' => 'Yn ddiymhongar',
+    'non-directive' => 'Anuniongyrchol',
+    'non-judgmental' => 'Anfeirniadol',
+    'self-preservation' => 'Hunan-gadwraeth',
+    'what-are-they-called' => "Beth maen nhw'n ei olygu?",
+    'confidentiality-p1' => "Er mwyn creu lle diogel i alwr siarad am ei deimladau, rydym o'r farn ei bod yn hanfodol cadw pob gohebiaeth â Nightline yn gyfrinachol. Nid yw cynnwys galwadau, e-byst a negeseuon gwib yn cael eu datgelu gyda'r rhai y tu allan i Nightline.",
+    'confidentiality-p2' => 'Gweler ein <a href="/confidentiality.pdf" target="_blank">polisi cyfrinachedd</a> i gael gwybodaeth fanylach.',
+    'anonymity-p1' => "Ni chofnodir unrhyw wybodaeth adnabod, ac ni ofynnir amdani wrth gysylltu â ni. Gall galwyr nodi eu hunain os yw'n well ganddyn nhw, ond gallant fod yn dawel eu meddwl bod ein gwasanaeth wedi'i gynllunio i beidio â datgelu gwybodaeth bersonol adnabyddadwy, fel y rhif ffôn neu'r cyfeiriad e-bost, pwy bynnag sy'n cysylltu. Yn yr un modd, mae ein gwirfoddolwyr yn hollol ddienw i'r galwr a'r gymuned myfyrwyr ehangach.",
+    'non-assuming-p1' => "Mae ein gwirfoddolwyr wedi'u hyfforddi i beidio â gwneud rhagdybiaethau. P'un a yw'n rhyw, cyfeiriadedd rhywiol, crefydd neu liw eich sanau - dim ond yr hyn rydych chi'n dewis ei ddweud wrthym rydyn ni'n ei wybod.",
+    'non-directive-p1' => "Nid yw Nightline yn wasanaeth cynghori na chwnsela proffesiynol. Nid yw gwirfoddolwyr yn rhoi cyngor, yn cynnig atebion nac yn eich cyfeirio at gamau penodol. Mae hyn yn golygu bod ein gwirfoddolwyr yn lle hynny yn canolbwyntio ar ofyn cwestiynau agored i chi, gan ganiatáu ichi archwilio'ch syniadau a'ch meddyliau heb gyfarwyddeb. Rydym yn parchu'r hawl i wneud eich penderfyniadau eich hun. Fodd bynnag, pe bai'r galwr yn dymuno, gallwn eich cyfeirio at rywle arall a allai gynnig cyngor pendant i chi.",
+    'non-judgmental-p1' => "Mae Nightline yn sefydliad elusennol annibynnol ac ymreolaethol, yn rhydd o ddylanwad y brifysgol ac Undeb y Myfyrwyr. Nid oes gennym unrhyw gysylltiadau crefyddol, gwleidyddol na diwylliannol ac nid ydym yn barnu galwyr mewn unrhyw ffordd. Ni fyddwn yn eithrio nac yn barnu galwyr am unrhyw gamau, credoau, barn neu sylwadau a ddelir neu a fynegir. Nid yw ein gwirfoddolwyr yn gwneud unrhyw ddatganiadau yn ddirmygus neu fel arall a fyddai'n arwydd o wahaniaethu. Rydym yn parchu barn <strong>pawb</strong> y rhai sy'n estyn allan atom ni.",
+    'self-preservation-p1' => "Mae lles ein gwirfoddolwyr yn hynod o bwysig. Mae'r egwyddor hon yn bwysig ar shifft ac ym mhob rhan o'r sefydliad.",
+];

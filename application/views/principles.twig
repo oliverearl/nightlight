@@ -1,0 +1,162 @@
+{% extends 'template/website/website.partial.twig' %}
+{% block title %}
+    {{ lang('principles')['title'] }}
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">{{ lang('principles')['heading'] }}</h2>
+            </div>
+            {# Confidentiality #}
+            <div class="col-md-2 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-volume-off fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h4>{{ lang('principles')['confidentiality'] }}</h4>
+                    </div>
+                </div>
+            </div>
+            {# Anonymity #}
+            <div class="col-md-2 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-cloud fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h4>{{ lang('principles')['anonymity'] }}</h4>
+                    </div>
+                </div>
+            </div>
+            {# Non-Assuming #}
+            <div class="col-md-2 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h4>{{  lang('principles')['non-assuming']}}</h4>
+                    </div>
+                </div>
+            </div>
+            {# Non-Directive #}
+            <div class="col-md-2 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-hand-o-right fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h4>{{  lang('principles')['non-directive']}}</h4>
+                    </div>
+                </div>
+            </div>
+            {# Non-Judgmental #}
+            <div class="col-md-2 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-eye fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h4>{{ lang('principles')['non-judgmental'] }}</h4>
+                    </div>
+                </div>
+            </div>
+            {# Self-Preservation #}
+            <div class="col-md-2 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-heart fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h4>{{ lang('principles')['self-preservation'] }}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header">{{ lang('principles')['what-are-they-called'] }}</h2>
+                </div>
+                <div class="col-lg-12">
+                    <ul class="nav nav-tabs nav-justified" id="myTab">
+                        <li class="active">
+                            <a data-toggle="tab" href="#service-one"><i class="fa fa-volume-off"></i> {{ lang('principles')['confidentiality'] }}</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#service-two"><i class="fa fa-cloud"></i> {{ lang('principles')['anonymity'] }}</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#service-three"><i class="fa fa-lightbulb-o"></i> {{ lang('principles')['non-assuming'] }}</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#service-four"><i class="fa fa-hand-o-right"></i> {{ lang('principles')['non-directive'] }}</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#service-five"><i class="fa fa-eye"></i> {{ lang('principles')['non-judgmental'] }}</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#service-six"><i class="fa fa-heart"></i> {{ lang('principles')['self-preservation'] }}</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade active in" id="service-one">
+                            <h4 class="page-header">{{ lang('principles')['confidentiality'] }}</h4>
+                            <p>{{ lang('principles')['confidentiality-p1'] }}</p>
+                            <p>{{ lang('principles')['confidentiality-p2'] | raw }}</p>
+                        </div>
+                        <div class="tab-pane fade" id="service-two">
+                            <h4 class="page-header">{{ lang('principles')['anonymity'] }}</h4>
+                            <p>{{ lang('principles')['anonymity-p1'] }}</p>
+                            <p></p>
+                        </div>
+                        <div class="tab-pane fade" id="service-three">
+                            <h4 class="page-header">{{ lang('principles')['non-assuming'] }}</h4>
+                            <p>{{ lang('principles')['non-assuming-p1'] }}</p>
+                        </div>
+                        <div class="tab-pane fade" id="service-four">
+                            <h4 class="page-header">{{ lang('principles')['non-directive'] }}</h4>
+                            <p>{{ lang('principles')['non-directive-p1'] }}</p>
+                            <p></p>
+                        </div>
+                        <div class="tab-pane fade" id="service-five">
+                            <h4 class="page-header">{{ lang('principles')['non-judgmental'] }}</h4>
+                            <p>{{ lang('principles')['non-judgmental-p1'] | raw }}</p>
+                            <p></p>
+                        </div>
+                        <div class="tab-pane fade" id="service-six">
+                            <h4 class="page-header">{{ lang('principles')['self-preservation'] }}</h4>
+                            <p>{{ lang('principles')['self-preservation-p1'] }}</p>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ol class="breadcrumb">
+            <li><a href="{{ base_url }}/home">{{ lang('nav')['home'] }}</a></li>
+            <li class="active">{{ lang('nav')['principles'] }}</li>
+        </ol>
+    </main>
+{% endblock %}
