@@ -167,3 +167,22 @@ $lang['email'] = [
     'something-else-text' => 'Please direct complaints, business queries, volunteering enquiries to our <a href="/feedback">contact page.</a>',
     'image-alt' => 'Student typing on keyboard',
 ];
+
+$lang['principles'] = [
+    'title' => 'Our Principles',
+    'heading' => 'Our Principles',
+    'confidentiality' => 'Confidentiality',
+    'anonymity' => 'Anonymity',
+    'non-assuming' => 'Non-Assuming',
+    'non-directive' => 'Non-Directive',
+    'non-judgmental' => 'Non-Judgmental',
+    'self-preservation' => 'Self-Preservation',
+    'what-are-they-called' => 'What do they mean?',
+    'confidentiality-p1' => 'To create a safe space for a caller to talk about their feelings, we consider keeping all correspondence with Nightline confidential is vital. Content of calls, emails and instant messages are not divulged with those outside of Nightline.',
+    'confidentiality-p2' => 'See our <a href="/confidentiality.pdf" target="_blank">confidentiality policy</a> for more detailed information.',
+    'anonymity-p1' => 'No identifying information is recorded, nor is it asked for when contacting us. Callers can identify themselves if they prefer, but rest assured that our service is designed to not disclose personally identifiable information, such as the phone number or email address, of whomever gets in touch. Similarly, our volunteers are completely anonymous both to the caller and the wider student community.',
+    'non-assuming-p1' => "Our volunteers are trained to not make assumptions. Whether it's gender, sexual orientation, religion or the colour of your socks - we only know what you choose to tell us.",
+    'non-directive-p1' => 'Nightline is not an advisory or professional counselling service. Volunteers do not give advice, offer solutions or direct you to a particular course of action. This means that our volunteers instead focus on asking you open questions, allowing you to explore your ideas and thoughts without directiveness. We respect the right to make your own decisions. However, should the caller desire, we can signpost you elsewhere that may be able to offer you concrete advice.',
+    'non-judgmental-p1' => "Nightline is an independent and autonomous charitable organisation, free from the influence of the university and the Students' Union. We have no religious, political or cultural affiliations and do not judge callers in any way. We will not exclude or judge callers for any actions, beliefs, opinions or remarks held or expressed. Our volunteers do not make any statements derogatory or otherwise that would be indicative of discrimination. We respect the views of <strong>all</strong> those who reach out to us.",
+    'self-preservation-p1' => 'The welfare of our volunteers is incredibly important. This principle is important both on shift and in all areas of the organisation.',
+];

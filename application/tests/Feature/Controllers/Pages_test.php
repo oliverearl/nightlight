@@ -51,6 +51,15 @@ class Pages_test extends TestCase
         $this->assertContains('online chat service', $output);
     }
 
+    public function test_the_our_principles_page_is_viewable(): void
+    {
+        $output = $this->request('GET', '/principles');
+
+        $this->assertResponseCode(200);
+
+        $this->assertContains('Anonymity', $output);
+    }
+
     public function test_the_what_is_nightline_page_is_viewable(): void
     {
         $output = $this->request('GET', '/what-is-nightline');
