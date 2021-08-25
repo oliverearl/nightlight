@@ -69,6 +69,6 @@ class Auth extends CI_Controller
 
     protected function get_errors(): string
     {
-        return validation_errors() ? validation_errors() : $this->session->flashdata('message') ?? '';
+        return validation_errors() ?: $this->session->flashdata('message') ?? '';
     }
 }

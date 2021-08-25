@@ -7,7 +7,7 @@ class Migrations extends CI_Controller
     {
         parent::__construct();
 
-        if (version_compare(phpversion(), '8.0', '>=')) {
+        if (PHP_VERSION_ID >= 80000) {
             exit('CI3 migrations do not work properly under PHP 8.' . PHP_EOL);
         }
 
@@ -26,7 +26,7 @@ class Migrations extends CI_Controller
 
         $migration = $this->migration->latest();
 
-        // looks stupid but requires strict checking
+        // Looks stupid but requires strict checking
         if ($migration === true) {
             echo 'No migrations to perform.' . PHP_EOL;
         } elseif ($migration === false) {
